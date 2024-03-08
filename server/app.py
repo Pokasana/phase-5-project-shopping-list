@@ -23,6 +23,20 @@ class Users(Resource):
 
         return response
     
+    def post(self):
+        new_user =  User(
+            name=request.form.get('name')
+        )
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        response = make_response(
+            new_user.to_dict(),
+            201
+        )
+
+        return response
 
 api.add_resource(Users, '/users')
 
