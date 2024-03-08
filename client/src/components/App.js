@@ -6,13 +6,13 @@ function App() {
   const [usersList, setUsersList] = useState([]);
   const [isLoaded,  setIsLoaded] = useState(false);
 
+  //fetch users
   useEffect(() =>  {
       fetch('http://127.0.0.1:5555/users')
       .then(r => r.json())
       .then(users => {
         const li = users.map(user => user['name'])
         setUsersList(li);
-          
         setIsLoaded(true);
       })
   },  []);
