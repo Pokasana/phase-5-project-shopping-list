@@ -12,7 +12,7 @@ from config import app, db, api
 from models import User
 
 # Views go here!
-class Users(Resource):
+class Login(Resource):
     def get(self):
         response_dict_list = [user.to_dict() for user in User.query.all()]
 
@@ -38,7 +38,7 @@ class Users(Resource):
 
         return response
 
-api.add_resource(Users, '/users')
+api.add_resource(Login, '/login')
 
 @app.route('/')
 def index():

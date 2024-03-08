@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import  Users from './User'
+import  Users from './Login'
 
 function App() {
   const [usersList, setUsersList] = useState([]);
@@ -8,7 +8,7 @@ function App() {
 
   //fetch users
   useEffect(() =>  {
-      fetch('http://127.0.0.1:5555/users')
+      fetch('http://127.0.0.1:5555/login')
       .then(r => r.json())
       .then(users => {
         setUsersList(users);
