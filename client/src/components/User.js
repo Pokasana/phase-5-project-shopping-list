@@ -6,7 +6,7 @@ function Users({usersList, isLoaded}) {
     
     return (
         <div className='users_edit'>
-            <h1>Edit Users</h1>
+            <h1>Log in as...</h1>
             <ol>
                 {usersList.map(user => {
                     const { id, name } = user
