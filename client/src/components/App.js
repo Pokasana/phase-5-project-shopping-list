@@ -7,9 +7,6 @@ function App() {
   const [isLoaded,  setIsLoaded] = useState(false);
   const [currentUser, setCurrentUser]  = useState("");
 
-  function  handleUserLogin(user) {
-    setCurrentUser(user)
-  }
 
   //fetch users
   useEffect(() =>  {
@@ -21,6 +18,14 @@ function App() {
       })
   },  []);
 
+  function handleUserLogin(user) {
+    setCurrentUser(user)
+  };
+
+  function addNewUser(user) {
+    setUsersList({...usersList, user})
+  };
+
   return (
     <div>
       <Switch>
@@ -28,7 +33,7 @@ function App() {
           <h1>Project Client</h1>
         </Route>
         <Route path="/login">
-          <Login usersList={usersList} isLoaded={isLoaded} currentUser={currentUser} handleUserLogin={handleUserLogin}/>
+          <Login usersList={usersList} isLoaded={isLoaded} currentUser={currentUser} handleUserLogin={handleUserLogin} addNewUser={addNewUser} />
         </Route>
       </Switch>
     </div>

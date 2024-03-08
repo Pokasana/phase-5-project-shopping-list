@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import AddUserForm from "./AddUserForm"
 
-function Login({usersList, isLoaded, handleUserLogin, currentUser}) {
+function Login({usersList, isLoaded, handleUserLogin, currentUser, addNewUser}) {
 
     if (!isLoaded) return <h3>Loading...</h3>
 
@@ -25,12 +26,8 @@ function Login({usersList, isLoaded, handleUserLogin, currentUser}) {
                 </ul>
             </div>
 
-            <form>
-                <h3>Add a new user</h3>
-                <input type="text" value={currentUser}/>
-				<button type="submit">Add</button>
-            </form>
-
+			<AddUserForm addNewUser={addNewUser} />
+			
         </div>
     )
 }
