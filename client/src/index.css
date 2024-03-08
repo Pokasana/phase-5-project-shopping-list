@@ -5,3 +5,14 @@
   --text: hsla(0, 0%, 100%, 0.88);
 }
 
+h1 {
+  font-family: 'Gill Sans', Tahoma, sans-serif;
+}
+
+.users_edit h1 {
+  color: #b37ba4;
+}
+
+.users_edit li {
+  color: #d99ac5
+}

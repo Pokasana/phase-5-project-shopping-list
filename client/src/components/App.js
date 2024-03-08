@@ -11,8 +11,7 @@ function App() {
       fetch('http://127.0.0.1:5555/users')
       .then(r => r.json())
       .then(users => {
-        const li = users.map(user => user['name'])
-        setUsersList(li);
+        setUsersList(users);
         setIsLoaded(true);
       })
   },  []);
@@ -24,7 +23,7 @@ function App() {
           <h1>Project Client</h1>
         </Route>
         <Route path="/users">
-          <Users users={usersList} isLoaded={isLoaded}/>
+          <Users usersList={usersList} isLoaded={isLoaded}/>
         </Route>
       </Switch>
     </div>
