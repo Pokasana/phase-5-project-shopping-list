@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request
+from flask import request, make_response
 from flask_restful import Resource
 
 # Local imports
@@ -12,6 +12,19 @@ from config import app, db, api
 from models import User
 
 # Views go here!
+class Users(Resource):
+    def get(self):
+        response_dict_list = [user.to_dict() for user in User.query.all()]
+
+        response = make_response(
+            response_dict_list,
+            200
+        )
+
+        return response
+    
+
+api.add_resource(Users, '/users')
 
 @app.route('/')
 def index():
