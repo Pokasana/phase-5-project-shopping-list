@@ -22,7 +22,7 @@ function App() {
         <Route exact path="/">
           <h1>Project Client</h1>
         </Route>
-        <Route path="/users">
+        <Route path="/login">
           <Users usersList={usersList} isLoaded={isLoaded}/>
         </Route>
       </Switch>

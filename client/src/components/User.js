@@ -5,7 +5,7 @@ function Users({usersList, isLoaded}) {
     if (!isLoaded) return <h3>Loading...</h3>
     
     return (
-        <div className='users_edit'>
+        <div className='login'>
             <h1>Log in as...</h1>
             <ol>
                 {usersList.map(user => {
@@ -13,6 +13,12 @@ function Users({usersList, isLoaded}) {
                     return <li key={id}>{name}</li>
                 })}
             </ol>
+
+            <form>
+                Add a new user<br/>
+                <input></input>
+            </form>
+
         </div>
     )
 }
