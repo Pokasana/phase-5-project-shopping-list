@@ -7,6 +7,10 @@ function Users({users, isLoaded}) {
     return (
         <div>
             <ol>
+                {users.map(user => {
+                    const userName = user.name;
+                    return <li>{userName}</li>
+                })}
                 <li>User 1</li>
             </ol>
         </div>

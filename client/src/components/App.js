@@ -19,8 +19,14 @@ function App() {
 
   return (
     <div>
-      <h1>Project Client</h1>
-      <Users users={usersList} isLoaded={isLoaded}/>
+      <Switch>
+        <Route exact path="/">
+          <h1>Project Client</h1>
+        </Route>
+        <Route path="/users">
+          <Users users={usersList} isLoaded={isLoaded}/>
+        </Route>
+      </Switch>
     </div>
   );
 }
