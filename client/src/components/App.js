@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import  Users from './Login'
+import  Login from './Login'
 
 function App() {
   const [usersList, setUsersList] = useState([]);
   const [isLoaded,  setIsLoaded] = useState(false);
+  const [currentUser, setCurrentUser]  = useState("");
+
+  function  handleUserLogin(user) {
+    setCurrentUser(user)
+  }
 
   //fetch users
   useEffect(() =>  {
@@ -23,7 +28,7 @@ function App() {
           <h1>Project Client</h1>
         </Route>
         <Route path="/login">
-          <Users usersList={usersList} isLoaded={isLoaded}/>
+          <Login usersList={usersList} isLoaded={isLoaded} currentUser={currentUser} handleUserLogin={handleUserLogin}/>
         </Route>
       </Switch>
     </div>
