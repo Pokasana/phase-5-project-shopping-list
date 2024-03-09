@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import AddUserForm from "./AddUserForm"
 
-function Login({usersList, isLoaded, handleUserLogin, currentUser, addNewUser}) {
+function Login({usersList, isLoaded, loginHandler}) {
 
     if (!isLoaded) return <h3>Loading...</h3>
 
-    function clickHandler(e) {
-        const user =  e.target.value
-        handleUserLogin(user)
-    }
+	function clickHandler(e) {
+		const userName  = e.target.innerHTML;
+		loginHandler(userName);
+	};
     
     return (
         <div className='login'>
@@ -20,13 +20,13 @@ function Login({usersList, isLoaded, handleUserLogin, currentUser, addNewUser}) 
                     {usersList.map(user => {
                         const { id, name } = user
                         return (
-                          <li key={id} onClick={clickHandler}>{name}</li>
+                          <li key={id} value={"value"} onClick={clickHandler}>{name}</li>
                         )
                     })}
                 </ul>
             </div>
 
-			<AddUserForm addNewUser={addNewUser} />
+			<AddUserForm />
 			
         </div>
     )

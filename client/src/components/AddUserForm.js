@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function AddUserForm({ addNewUser }) {
+function AddUserForm({ }) {
   const [newUser, setNewUser]  = useState("")
 
   function handleInput(e) {

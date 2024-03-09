@@ -7,7 +7,6 @@ function App() {
   const [isLoaded,  setIsLoaded] = useState(false);
   const [currentUser, setCurrentUser]  = useState("");
 
-
   //fetch users
   useEffect(() =>  {
       fetch('http://127.0.0.1:5555/login')
@@ -18,6 +17,10 @@ function App() {
       })
   },  []);
 
+  function loginHandler(userName) {
+    setCurrentUser(userName)
+  };
+
   return (
     <div>
       <Switch>
@@ -25,7 +28,7 @@ function App() {
           <h1>Project Client</h1>
         </Route>
         <Route path="/login">
-          <Login usersList={usersList} isLoaded={isLoaded} currentUser={currentUser} />
+          <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} />
         </Route>
       </Switch>
     </div>
