@@ -25,7 +25,7 @@ function App() {
           <h1>Project Client</h1>
         </Route>
         <Route path="/login">
-          <Login usersList={usersList} isLoaded={isLoaded} currentUser={currentUser} handleUserLogin={handleUserLogin} addNewUser={addNewUser} />
+          <Login usersList={usersList} isLoaded={isLoaded} currentUser={currentUser} />
         </Route>
       </Switch>
     </div>
