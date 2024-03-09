@@ -25,7 +25,7 @@ class Login(Resource):
     
     def post(self):
         new_user =  User(
-            name=request.form.get('name')
+            name = request.form.get('name')
         )
 
         db.session.add(new_user)

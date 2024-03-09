@@ -18,14 +18,6 @@ function App() {
       })
   },  []);
 
-  function handleUserLogin(user) {
-    setCurrentUser(user)
-  };
-
-  function addNewUser(user) {
-    setUsersList({...usersList, user})
-  };
-
   return (
     <div>
       <Switch>
