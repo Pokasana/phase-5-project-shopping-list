@@ -20,7 +20,7 @@ function Login({usersList, isLoaded, loginHandler, onAddUser}) {
                     {usersList.map(user => {
                         const { id, name } = user
                         return (
-													<li key={id} value={"value"} onClick={clickHandler}>{name}</li>
+							<li key={id} onClick={clickHandler}>{name}</li>
                         )
                     })}
                 </ul>
