@@ -24,8 +24,6 @@ class Login(Resource):
         return response
     
     def post(self):
-        print('POST request received')
-        print(request.get_json())
 
         new_user =  User(
             name = request.get_json()
@@ -52,7 +50,14 @@ class Shops(Resource):
 
         return response
     
-    
+    def post(self):
+        print('Post request received')
+
+        new_shop =  Shop(
+            name = request.get_json()
+        )
+
+        return {"message": f"post request handled {new_shop}"}
     
 
 api.add_resource(Login, '/login')

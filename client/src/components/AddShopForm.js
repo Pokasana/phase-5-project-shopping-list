@@ -4,6 +4,7 @@ function AddShopForm({ onAddShop }) {
   const [formData, setFormData]  = useState("")
 
   function handleInput(e) {
+    console.log(e.target.value);
     setFormData(e.target.value);
   };
 
@@ -20,9 +21,9 @@ function AddShopForm({ onAddShop }) {
       body: JSON.stringify(formData)
     })
     .then(r => r.json())
-    .then(newUser => {
-      console.log(newUser);
-      onAddShop(newUser);
+    .then(newShop => {
+      console.log(newShop);
+      onAddShop(newShop);
     })
 
     setFormData("")
