@@ -11,4 +11,4 @@ class User(db.Model, SerializerMixin):
     name = db.Column(db.String, unique=True, nullable=False)
 
     def  __repr__(self):
-        return f'User: {self.name}'
+        return f'User: {self.id} {self.name}'

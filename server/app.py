@@ -24,8 +24,11 @@ class Login(Resource):
         return response
     
     def post(self):
+        print('POST request received')
+        print(request.get_json())
+
         new_user =  User(
-            name = request.form.get('name')
+            name = request.get_json()
         )
 
         db.session.add(new_user)

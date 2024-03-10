@@ -9,16 +9,21 @@ function App() {
 
   //fetch users
   useEffect(() =>  {
-      fetch('http://127.0.0.1:5555/login')
-      .then(r => r.json())
-      .then(users => {
-        setUsersList(users);
-        setIsLoaded(true);
-      })
-  },  []);
+    fetch('http://127.0.0.1:5555/login')
+    .then(r => r.json())
+    .then(users => {
+      setUsersList(users);
+      setIsLoaded(true);
+      console.log(currentUser);
+    })
+  }, []);
 
   function loginHandler(userName) {
     setCurrentUser(userName)
+  };
+
+  function onAddUser(user) {
+    setUsersList({...usersList, user})
   };
 
   return (
@@ -28,7 +33,7 @@ function App() {
           <h1>Project Client</h1>
         </Route>
         <Route path="/login">
-          <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} />
+          <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} onAddUser={onAddUser} />
         </Route>
       </Switch>
     </div>

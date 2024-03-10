@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddUserForm from "./AddUserForm"
 
-function Login({usersList, isLoaded, loginHandler}) {
+function Login({usersList, isLoaded, loginHandler, onAddUser}) {
 
     if (!isLoaded) return <h3>Loading...</h3>
 
@@ -26,7 +26,7 @@ function Login({usersList, isLoaded, loginHandler}) {
                 </ul>
             </div>
 
-			<AddUserForm />
+			<AddUserForm onAddUser={onAddUser}/>
 			
         </div>
     )

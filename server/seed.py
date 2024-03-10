@@ -24,4 +24,6 @@ if __name__ == '__main__':
 
         db.session.add_all(users)
         db.session.commit()
+
+        print("Seeding completed")
         
