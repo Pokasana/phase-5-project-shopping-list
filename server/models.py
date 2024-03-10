@@ -1,3 +1,4 @@
+from sqlalchemy import func
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 
@@ -22,3 +23,19 @@ class Shop(db.Model, SerializerMixin):
     def __repr__(self):
         return f'Shop: {self.id} {self.name}'
     
+    
+class Item(db.Model, SerializerMixin):
+    __tablename__ = 'items'
+
+    id = db.Column(db.Integer, primary_key=True)
+    product_name =db.Column(db.String, unique=True, nullable=False)
+    added_date = db.Column(db.Date, default=func.current_date())
+    favorite = db.Column(db.Boolean, default=False)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def __repr__(self):
+        return f'Item: {self.id} {self.product_name}'
+
+
+
