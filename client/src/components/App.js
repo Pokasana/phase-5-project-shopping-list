@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import  Login from './Login'
+import  Shops from './Shops'
 
 function App() {
   const [usersList, setUsersList] = useState([]);
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route path="/login">
           <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} onAddUser={onAddUser} />
+        </Route>
+        <Route path="/shops">
+          <Shops />
         </Route>
       </Switch>
     </div>

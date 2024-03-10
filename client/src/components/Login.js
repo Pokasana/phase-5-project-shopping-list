@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import AddUserForm from "./AddUserForm"
 
 function Login({usersList, isLoaded, loginHandler, onAddUser}) {
