@@ -1,35 +1,38 @@
 import React, { useState } from "react";
 
 function AddUserForm({ onAddUser }) {
-  const [newUser, setNewUser]  = useState()
+  const [formData, setFormData]  = useState("")
 
   function handleInput(e) {
-    console.log('changing...')
-    setNewUser(e.target.value);
+    setFormData(e.target.value);
   };
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log('submit')
-    console.log(newUser)
+    console.log(formData)
 
     fetch("http://127.0.0.1:5555/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(newUser)
+      body: JSON.stringify(formData)
     })
     .then(r => r.json())
     .then(newUser => {
       console.log(newUser);
+      onAddUser(newUser);
     })
+
+    setFormData("")
+
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <h3>Add a new user</h3>
-      <input type="text" value={newUser} onChange={handleInput}/>
+      <input type="text" value={formData} onChange={handleInput}/>
       <button type="submit">Add</button>
     </form>
   )

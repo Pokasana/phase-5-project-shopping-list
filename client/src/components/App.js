@@ -13,14 +13,16 @@ function App() {
     .then(r => r.json())
     .then(users => {
       setUsersList(users);
-      console.log(usersList)
       setIsLoaded(true);
-      console.log(currentUser);
     })
   }, []);
 
   function loginHandler(userName) {
     setCurrentUser(userName)
+  };
+
+  function onAddUser(newUser) {
+    setUsersList([...usersList, newUser])
   };
 
   return (
@@ -30,7 +32,7 @@ function App() {
           <h1>Project Client</h1>
         </Route>
         <Route path="/login">
-          <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} />
+          <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} onAddUser={onAddUser} />
         </Route>
       </Switch>
     </div>
