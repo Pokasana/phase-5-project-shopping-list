@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, User, Item
+from models import db, User, Shop, Item
 
 if __name__ == '__main__':
     fake = Faker()
@@ -16,23 +16,31 @@ if __name__ == '__main__':
         print("Starting seed...")
         # Seed code goes here!
         User.query.delete()
-
         users = []
-
         for i in range(3):
             users.append(User(name = fake.first_name()))
 
         db.session.add_all(users)
         db.session.commit()
-
         print("Users seeded")
 
-        Item.query.delete()
+        Shop.query.delete()
+        shops = []
+        shops.append(Shop('Costco'))
+        shops.append(Shop('Safeway'))
+        shops.append(Shop('Whole Foods'))
+        shops.append(Shop('The Home Depot'))
 
-        items = []
+        db.session.add_all(shops)
+        db.session.commit()
+        print("Shops seeded")
 
-        items.append(Item(product_name='Carrots', category = 'grocery', favorite = True))
-        items.append(Item(product_name='Milk', category = 'grocery', favorite = True))
-        items.append(Item(product_name='White wine', category = 'grocery', favorite = False))
-        items.append(Item(product_name='Toilet Rolls', category = 'grocery', favorite = False))
-        items.append(Item(product_name='', category = 'grocery', favorite = False))
+        # Item.query.delete()
+
+        # items = []
+
+        # items.append(Item(product_name='Carrots', category = 'grocery', favorite = True))
+        # items.append(Item(product_name='Milk', category = 'grocery', favorite = True))
+        # items.append(Item(product_name='White wine', category = 'grocery', favorite = False))
+        # items.append(Item(product_name='Toilet Rolls', category = 'grocery', favorite = False))
+        # items.append(Item(product_name='', category = 'grocery', favorite = False))
