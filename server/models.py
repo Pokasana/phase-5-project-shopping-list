@@ -1,3 +1,4 @@
+from sqlalchemy import func
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 
@@ -18,8 +19,7 @@ class Item(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     product_name =db.Column(db.String, unique=True, nullable=False)
-    category =  db.Column(db.String)
-    added_date = db.Column(db.Date)
+    added_date = db.Column(db.Date, default=func.current_date())
     favorite = db.Column(db.Boolean, default=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
