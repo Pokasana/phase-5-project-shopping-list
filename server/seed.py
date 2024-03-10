@@ -26,10 +26,10 @@ if __name__ == '__main__':
 
         Shop.query.delete()
         shops = []
-        shops.append(Shop('Costco'))
-        shops.append(Shop('Safeway'))
-        shops.append(Shop('Whole Foods'))
-        shops.append(Shop('The Home Depot'))
+        shops.append(Shop(name = 'Costco'))
+        shops.append(Shop(name = 'Safeway'))
+        shops.append(Shop(name = 'Whole Foods'))
+        shops.append(Shop(name = 'The Home Depot'))
 
         db.session.add_all(shops)
         db.session.commit()
