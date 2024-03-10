@@ -52,6 +52,8 @@ class Shops(Resource):
 
         return response
     
+    
+    
 
 api.add_resource(Login, '/login')
 api.add_resource(Shops, '/shops')

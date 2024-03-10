@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function AddUserForm({ onAddUser }) {
+function AddShopForm({ onAddShop }) {
   const [formData, setFormData]  = useState("")
 
   function handleInput(e) {
@@ -12,7 +12,7 @@ function AddUserForm({ onAddUser }) {
     console.log('submit')
     console.log(formData)
 
-    fetch("http://127.0.0.1:5555/login", {
+    fetch("http://127.0.0.1:5555/shops", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -22,7 +22,7 @@ function AddUserForm({ onAddUser }) {
     .then(r => r.json())
     .then(newUser => {
       console.log(newUser);
-      onAddUser(newUser);
+      onAddShop(newUser);
     })
 
     setFormData("")
@@ -30,12 +30,12 @@ function AddUserForm({ onAddUser }) {
   }
 
   return (
-    <form className="add_user" onSubmit={handleSubmit}>
-      <h3>Add a new user</h3>
+    <form className="add_shop" onSubmit={handleSubmit}>
+      <h3>Add a new shop</h3>
       <input type="text" value={formData} onChange={handleInput}/>
       <button type="submit">Add</button>
     </form>
   )
 };
 
-export default AddUserForm;
+export default AddShopForm;
