@@ -9,7 +9,7 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import User
+from models import User, Shop
 
 # Views go here!
 class Login(Resource):
@@ -41,7 +41,20 @@ class Login(Resource):
 
         return response
 
+class Shops(Resource):
+    def get(self):
+        response_dict_list = [shop.to_dict() for shop in Shop.query.all()]
+
+        response = make_response(
+            response_dict_list,
+            200
+        )
+
+        return response
+    
+
 api.add_resource(Login, '/login')
+api.add_resource(Shops, '/shops')
 
 @app.route('/')
 def index():
