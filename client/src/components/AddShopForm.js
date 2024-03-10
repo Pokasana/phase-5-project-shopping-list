@@ -4,7 +4,6 @@ function AddShopForm({ onAddShop }) {
   const [formData, setFormData]  = useState("")
 
   function handleInput(e) {
-    console.log(e.target.value);
     setFormData(e.target.value);
   };
 

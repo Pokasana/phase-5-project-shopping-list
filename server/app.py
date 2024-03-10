@@ -57,8 +57,15 @@ class Shops(Resource):
             name = request.get_json()
         )
 
-        return {"message": f"post request handled {new_shop}"}
-    
+        db.session.add(new_shop)
+        db.session.commit()
+
+        response  = make_response(
+            new_shop.to_dict(),
+            201
+        )
+
+        return response
 
 api.add_resource(Login, '/login')
 api.add_resource(Shops, '/shops')
