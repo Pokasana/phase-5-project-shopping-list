@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function AddUserForm({ onAddUser }) {
-  const [newUser, setNewUser]  = useState("")
+  const [newUser, setNewUser]  = useState()
 
   function handleInput(e) {
     console.log('changing...')
@@ -21,9 +21,8 @@ function AddUserForm({ onAddUser }) {
       body: JSON.stringify(newUser)
     })
     .then(r => r.json())
-    .then(item => {
-      // onAddUser(item);
-      console.log(item);
+    .then(newUser => {
+      console.log(newUser);
     })
   }
 
