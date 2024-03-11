@@ -9,8 +9,6 @@ function AddShopForm({ onAddShop }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('submit')
-    console.log(formData)
 
     fetch("http://127.0.0.1:5555/shops", {
       method: "POST",
@@ -21,7 +19,6 @@ function AddShopForm({ onAddShop }) {
     })
     .then(r => r.json())
     .then(newShop => {
-      console.log(newShop);
       onAddShop(newShop);
     })
 

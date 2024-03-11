@@ -9,6 +9,7 @@ function App() {
   const [currentUser, setCurrentUser]  = useState("");
 
   //fetch users
+  //move this down  to Login component later - refer Shops
   useEffect(() =>  {
     fetch('http://127.0.0.1:5555/login')
     .then(r => r.json())
