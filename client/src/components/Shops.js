@@ -14,10 +14,7 @@ function Shops() {
     setShops([...shops, newShop])
   };
 
-	function clickHandler(e) {
-		console.log(e.target.id)
-
-		const id = e.target.id
+	function clickHandler(id) {
 
 		fetch(`http://127.0.0.1:5555/shops/${id}`, {
 			method: "DELETE",
@@ -40,7 +37,12 @@ function Shops() {
 							<li key={id}>
 								{name}
 								&nbsp;&nbsp;&nbsp;
-								<button id={id} onClick={clickHandler}>Delete</button>
+								<button onClick={() => {
+										clickHandler(id);
+										setShops(shops => {
+											return  shops.filter(shop => shop.id !== id)
+										})
+									}}>Delete</button>
 							</li>
 					)
 				})}
