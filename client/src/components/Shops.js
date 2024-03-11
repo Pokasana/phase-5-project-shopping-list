@@ -23,7 +23,11 @@ function Shops() {
 			method: "DELETE",
 		})
 		.then(r => r.json())
-		.then(shop => console.log(`${shop} is deleted`))
+		.then(() => {
+			setShops(shops => {
+				return shops.filter(shop =>  shop.id !== id)
+			})
+		})
 	};
 
 	return (
