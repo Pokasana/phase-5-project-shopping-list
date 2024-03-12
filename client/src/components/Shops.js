@@ -3,12 +3,18 @@ import AddShopForm from "./AddShopForm"
 
 function Shops() {
 	const [shops, setShops] = useState([])
+  const [isLoaded, setIsLoaded] = useState(false)
 
 	useEffect(() => {
 	fetch('http://127.0.0.1:5555/shops')
 	.then(r => r.json())
-	.then(data => setShops(data))
+	.then(data => {
+		setShops(data);
+		setIsLoaded(true);
+	})
 	}, [])
+
+  if (!isLoaded) return <h3>Loading...</h3>
 
   function onAddShop(newShop) {
     setShops([...shops, newShop])
