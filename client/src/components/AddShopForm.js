@@ -30,6 +30,7 @@ function AddShopForm({ onAddShop }) {
         id="shop"
         name="shop"
         type="shop"
+        autoComplete="off"
         onChange={formik.handleChange}
         value={formik.values.shop}
       />

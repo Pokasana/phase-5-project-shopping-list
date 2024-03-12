@@ -39,9 +39,6 @@ function Shops() {
 								&nbsp;&nbsp;&nbsp;
 								<button onClick={() => {
 									clickHandler(id);
-									setShops(shopArr => {
-										return  shopArr.filter(item => item.id !== id)
-									})
 								}}>Delete</button>
 							</li>
 					)

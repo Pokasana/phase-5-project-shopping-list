@@ -32,7 +32,7 @@ function AddUserForm({ onAddUser }) {
         id="user"
         name="user"
         type="user"
-        autocomplete="off"
+        autoComplete="off"
         onChange={formik.handleChange}
         value={formik.values.user}
       />
