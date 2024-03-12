@@ -28,11 +28,11 @@ class Item(db.Model, SerializerMixin):
     __tablename__ = 'items'
 
     id = db.Column(db.Integer, primary_key=True)
-    product_name =db.Column(db.String, unique=True, nullable=False)
-    added_date = db.Column(db.Date, default=func.current_date())
+    name =db.Column(db.String, unique=True, nullable=False)
     favorite = db.Column(db.Boolean, default=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    shop_id = db.Column(db.Integer, db.ForeignKey('shops.id'))
 
     def __repr__(self):
-        return f'Item: {self.id} {self.product_name}'
+        return f'Item: {self.id} {self.name} {self.favorite}'
