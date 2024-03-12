@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { useFormik } from 'formik';
+import * as yup from "yup";
 
 function AddUserForm({ onAddUser }) {
-  const [refreshPage, setRefreshPage] = useState(false);
+
+  const formSchema = yup.object().shape({
+    user: yup.string().required("Must enter an user name")
+  });
 
   const formik = useFormik({
     initialValues: {
       user: "",
     },
+    validationSchema: formSchema,
     onSubmit: (values, { resetForm }) =>  {
       fetch("http://127.0.0.1:5555/login", {
         method: "POST",
@@ -22,6 +27,7 @@ function AddUserForm({ onAddUser }) {
         onAddUser(newUser);
       })
       resetForm();
+      console.log(formik.errors)
       }
   })
 
@@ -31,12 +37,13 @@ function AddUserForm({ onAddUser }) {
       <input
         id="user"
         name="user"
-        type="user"
         autoComplete="off"
         onChange={formik.handleChange}
         value={formik.values.user}
       />
       <button type="submit">Add</button>
+
+      <p style={{color: "red"}}>{formik.errors.user}</p>
     </form>
   )
 };

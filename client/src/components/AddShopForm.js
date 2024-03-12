@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
+import * as yup from "yup";
 
 function AddShopForm({ onAddShop }) {
+
+  const formSchema = yup.object().shape({
+    shop: yup.string().required("Must enter a shop name")
+  });
 
   const formik = useFormik({
     initialValues: {
       shop: "",
     },
+    validationSchema: formSchema,
     onSubmit: (values, { resetForm }) => {
       fetch("http://127.0.0.1:5555/shops", {
         method: "POST",
@@ -35,6 +41,8 @@ function AddShopForm({ onAddShop }) {
         value={formik.values.shop}
       />
       <button type="submit">Add</button>
+
+      <p style={{color: "red"}}>{formik.errors.shop}</p>
     </form>
   )
 };
