@@ -38,11 +38,11 @@ function Shops() {
 								{name}
 								&nbsp;&nbsp;&nbsp;
 								<button onClick={() => {
-										clickHandler(id);
-										setShops(shops => {
-											return  shops.filter(shop => shop.id !== id)
-										})
-									}}>Delete</button>
+									clickHandler(id);
+									setShops(shopArr => {
+										return  shopArr.filter(item => item.id !== id)
+									})
+								}}>Delete</button>
 							</li>
 					)
 				})}
