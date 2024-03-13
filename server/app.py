@@ -9,7 +9,7 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import User, Shop
+from models import User, Shop, Item
 
 # Views go here!
 class Login(Resource):
@@ -67,10 +67,6 @@ class Shops(Resource):
 
         return response
 
-    #Create new resource for a single record and add this delete method into it
-    # def delete(self):
-    #     print('DELETE request received')
-
 class ShopById(Resource):
     def get(self, id):
         shop = Shop.query.filter_by(id=id).first()
@@ -89,10 +85,22 @@ class ShopById(Resource):
         db.session.commit()
 
         return {"delete_successful": True, "message": "Shop deleted."}
+    
+class Items(Resource):
+    def get(self):
+        response_dict = [item.to_dict() for item in Item.query.all()]
+
+        response = make_response(
+            response_dict,
+            200
+        )
+
+        return response
 
 api.add_resource(Login, '/login')
 api.add_resource(Shops, '/shops')
 api.add_resource(ShopById, '/shops/<int:id>')
+api.add_resource(Items, '/items')
 
 @app.route('/')
 def index():
