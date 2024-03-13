@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AddShopForm from "./AddShopForm"
 
 function Shops() {
-	const [shops, setShops] = useState([])
+const [shops, setShops] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
 
 	useEffect(() => {

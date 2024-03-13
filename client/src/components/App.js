@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import  Login from './Login'
 import  Shops from './Shops'
+import Items from './Items'
 
 function App() {
   const [usersList, setUsersList] = useState([]);
@@ -31,7 +32,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path="/">
-          <h1>Project Client</h1>
+          <Items />
         </Route>
         <Route path="/login">
           <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} onAddUser={onAddUser} />
