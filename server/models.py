@@ -7,22 +7,24 @@ from config import db
 # Models go here!
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
+    serialize_rules = ('-items.user',)
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
 
-    items =  db.relationship('Item', back_populates='user')
+    items =  db.relationship('Item', back_populates='user', cascade='all, delete-orphan')
 
     def  __repr__(self):
         return f'User: {self.id} {self.name}'
     
 class Shop(db.Model, SerializerMixin):
     __tablename__ = 'shops'
+    serialize_rules = ('-items.shop',)
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
 
-    items = db.relationship('Item', back_populates='shop')
+    items = db.relationship('Item', back_populates='shop', cascade='all, delete-orphan')
 
     def __repr__(self):
         return f'Shop: {self.id} {self.name}'
@@ -30,6 +32,7 @@ class Shop(db.Model, SerializerMixin):
     
 class Item(db.Model, SerializerMixin):
     __tablename__ = 'items'
+    serialize_rules = ('-user.items','-shop.items')
 
     id = db.Column(db.Integer, primary_key=True)
     name =db.Column(db.String, unique=True, nullable=False)
