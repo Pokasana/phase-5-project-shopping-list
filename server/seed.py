@@ -33,9 +33,6 @@ if __name__ == '__main__':
 
         db.session.add_all(shops)
         db.session.commit()
-
-        print(users[0])
-
         print("Shops seeded")
 
         Item.query.delete()
