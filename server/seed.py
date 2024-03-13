@@ -14,7 +14,7 @@ if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
         print("Starting seed...")
-        # Seed code goes here!
+
         User.query.delete()
         users = []
         for i in range(3):
@@ -33,14 +33,34 @@ if __name__ == '__main__':
 
         db.session.add_all(shops)
         db.session.commit()
+
+        print(users[0])
+
         print("Shops seeded")
 
-        # Item.query.delete()
+        Item.query.delete()
 
-        # items = []
+        items = []
 
-        # items.append(Item(product_name='Carrots', category = 'grocery', favorite = True))
-        # items.append(Item(product_name='Milk', category = 'grocery', favorite = True))
-        # items.append(Item(product_name='White wine', category = 'grocery', favorite = False))
-        # items.append(Item(product_name='Toilet Rolls', category = 'grocery', favorite = False))
-        # items.append(Item(product_name='', category = 'grocery', favorite = False))
+        items.append(Item(name='Soy milk', favorite=True, user=users[0], shop=shops[0]))
+        items.append(Item(name='Milk', favorite=True, user=users[0], shop=shops[0]))
+        items.append(Item(name='Bin bags', favorite=True, user=users[2], shop=shops[0]))
+        items.append(Item(name='Toilet Rolls', favorite=True, user=users[1], shop=shops[0]))
+        items.append(Item(name='Red wine', favorite=False, user=users[1], shop=shops[0]))
+
+        items.append(Item(name='Carrots', favorite=True, user=users[0], shop=shops[1]))
+        items.append(Item(name='Sprite', favorite=True, user=users[2], shop=shops[1]))
+        items.append(Item(name='Avocados', favorite=True, user=users[1], shop=shops[1]))
+        items.append(Item(name='Pop corns', favorite=False, user=users[1], shop=shops[1]))
+
+        items.append(Item(name='Smoked salmon', favorite=False, user=users[2], shop=shops[2]))
+        items.append(Item(name='Chocolate', favorite=False, user=users[0], shop=shops[2]))
+        items.append(Item(name='Smoothie cubes', favorite=False, user=users[0], shop=shops[2]))
+        items.append(Item(name='Frozen pizza', favorite=True, user=users[2], shop=shops[2]))
+
+        items.append(Item(name='Deck brush', favorite=False, user=users[1], shop=shops[3]))
+        items.append(Item(name='White paint', favorite=False, user=users[2], shop=shops[3]))
+
+        db.session.add_all(items)
+        db.session.commit()
+        print("Items seeded")

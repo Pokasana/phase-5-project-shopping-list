@@ -37,7 +37,7 @@ class Item(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     shop_id = db.Column(db.Integer, db.ForeignKey('shops.id'))
 
-    user = db.relationship('User', back_poppulates='items')
+    user = db.relationship('User', back_populates='items')
     shop = db.relationship('Shop', back_populates='items')
 
     def __repr__(self):
