@@ -12,18 +12,29 @@ function Items() {
 	},[])
 
 	function clickHandler(id, shop_id) {
-		console.log(id)
-		console.log(shop_id)
 
-		// fetch(`http://127.0.0.1:5555/items/${id}`, {
-		// 	method: "DELETE",
-		// })
-		// .then(r => r.json())
-		// .then(() => {
-		// 	setShops(items => {
-		// 		return items.filter(item => item.id !== id)
-		// 	})
-		// })
+		fetch(`http://127.0.0.1:5555/items/${id}`, {
+			method: "DELETE",
+		})
+		.then(r => r.json())
+		.then(() => {
+			const filteredItems = []
+
+			shops.map(shop => {
+				if (shop.id === shop_id) {
+					shop.items = shop.items.filter(item => item.id !== id)
+					filteredItems.push(shop)
+				}
+				else filteredItems.push(shop)
+			});
+
+			setShops(filteredItems)
+
+		});
+	};
+
+	function onAddItem() {
+		console.log("Handled adding an item")
 	};
 
 	return (
@@ -41,7 +52,9 @@ function Items() {
 									<li key={id}>
 										{name}
 										&nbsp;&nbsp;&nbsp;
-										<button onClick={() => clickHandler(id, shop_id)}>
+										<button onClick={() => {
+											clickHandler(id, shop_id)
+											}}>
 											Got it!
 										</button>
 									</li>

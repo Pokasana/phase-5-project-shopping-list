@@ -79,7 +79,6 @@ class ShopById(Resource):
         return response
     
     def delete(self, id):
-        print('DELETE request received')
         shop  = Shop.query.filter_by(id=id).first()
         db.session.delete(shop)
         db.session.commit()
@@ -107,6 +106,14 @@ class ItemById(Resource):
         )
 
         return response
+    
+    def delete(self, id):
+        item = Item.query.filter_by(id=id).first()
+
+        db.session.delete(item)
+        db.session.commit()
+
+        return {"delete_successful": True, "message": "Item deleted."}
 
 api.add_resource(Login, '/login')
 api.add_resource(Shops, '/shops')
