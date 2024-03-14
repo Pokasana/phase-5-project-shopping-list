@@ -96,11 +96,23 @@ class Items(Resource):
         )
 
         return response
+    
+class ItemById(Resource):
+    def get(self, id):
+        item = Item.query.filter_by(id=id).first()
+
+        response = make_response(
+            item.to_dict(),
+            200
+        )
+
+        return response
 
 api.add_resource(Login, '/login')
 api.add_resource(Shops, '/shops')
 api.add_resource(ShopById, '/shops/<int:id>')
 api.add_resource(Items, '/items')
+api.add_resource(ItemById, '/items/<int:id>')
 
 @app.route('/')
 def index():
