@@ -11,6 +11,21 @@ function Items() {
 		})
 	},[])
 
+	function clickHandler(id, shop_id) {
+		console.log(id)
+		console.log(shop_id)
+
+		// fetch(`http://127.0.0.1:5555/items/${id}`, {
+		// 	method: "DELETE",
+		// })
+		// .then(r => r.json())
+		// .then(() => {
+		// 	setShops(items => {
+		// 		return items.filter(item => item.id !== id)
+		// 	})
+		// })
+	};
+
 	return (
 		<div className="items">
 			<h1>Shopping List</h1>
@@ -21,12 +36,14 @@ function Items() {
 						<h4>{name}</h4>
 						<ul>
 							{items.map(item => {
-								const { id, name } = item
+								const { id, name, shop_id } = item
 								return (
 									<li key={id}>
 										{name}
 										&nbsp;&nbsp;&nbsp;
-										<button>Got it!</button>
+										<button onClick={() => clickHandler(id, shop_id)}>
+											Got it!
+										</button>
 									</li>
 									)
 							})}

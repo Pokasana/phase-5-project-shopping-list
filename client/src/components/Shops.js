@@ -28,7 +28,7 @@ function Shops() {
 		.then(r => r.json())
 		.then(() => {
 			setShops(shops => {
-				return shops.filter(shop =>  shop.id !== id)
+				return shops.filter(shop => shop.id !== id)
 			})
 		})
 	};
