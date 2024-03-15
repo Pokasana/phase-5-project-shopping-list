@@ -56,11 +56,38 @@ function App() {
 		})
 	};
 
+  //Items
+	function onDeleteItem(id, shop_id) {
+
+		fetch(`http://127.0.0.1:5555/items/${id}`, {
+			method: "DELETE",
+		})
+		.then(r => r.json())
+		.then(() => {
+			const filteredItems = []
+
+			shopsList.map(shop => {
+				if (shop.id === shop_id) {
+					shop.items = shop.items.filter(item => item.id !== id)
+					filteredItems.push(shop)
+				}
+				else filteredItems.push(shop)
+			});
+
+			setShopsList(filteredItems)
+
+		});
+	};
+
+	function onAddItem(newItem) {
+		console.log(newItem)
+	};
+
   return (
     <div>
       <Switch>
         <Route exact path="/">
-          <Items />
+          <Items shopsList={shopsList} isLoaded={isLoaded} onAddItem={onAddItem} clickHandler={onDeleteItem}/>
         </Route>
         <Route path="/login">
           <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} onAddUser={onAddUser} />
