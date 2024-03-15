@@ -35,7 +35,6 @@ function Items() {
 	};
 
 	function onAddItem(newItem) {
-		console.log("Handled adding an item")
 		console.log(newItem)
 	};
 

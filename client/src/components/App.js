@@ -8,8 +8,9 @@ function App() {
   const [usersList, setUsersList] = useState([]);
   const [isLoaded,  setIsLoaded] = useState(false);
   const [currentUser, setCurrentUser]  = useState("");
+	const [shopsList, setShopsList] = useState([])
 
-  //fetch users
+  //users
   //move this down  to Login component later - refer Shops
   useEffect(() =>  {
     fetch('http://127.0.0.1:5555/login')
@@ -28,6 +29,33 @@ function App() {
     setUsersList([...usersList, newUser])
   };
 
+  //shops
+	useEffect(() => {
+    fetch('http://127.0.0.1:5555/shops')
+    .then(r => r.json())
+    .then(data => {
+      setShopsList(data);
+      setIsLoaded(true);
+    })
+    }, [])
+    
+  function onAddShop(newShop) {
+    setShopsList([...shopsList, newShop])
+  };
+
+	function onShopDelete(id) {
+
+		fetch(`http://127.0.0.1:5555/shops/${id}`, {
+			method: "DELETE",
+		})
+		.then(r => r.json())
+		.then(() => {
+			setShopsList(shops => {
+				return shops.filter(shop => shop.id !== id)
+			})
+		})
+	};
+
   return (
     <div>
       <Switch>
@@ -38,7 +66,7 @@ function App() {
           <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} onAddUser={onAddUser} />
         </Route>
         <Route path="/shops">
-          <Shops />
+          <Shops shopsList={shopsList} isLoaded={isLoaded} onAddShop={onAddShop} clickHandler={onShopDelete} />
         </Route>
       </Switch>
     </div>
