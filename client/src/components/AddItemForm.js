@@ -25,7 +25,7 @@ function AddItemForm({ onAddItem }) {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(values.name)
+        body: JSON.stringify(values)
       })
       .then(r => r.json())
       .then(newItem => {
@@ -47,7 +47,7 @@ function AddItemForm({ onAddItem }) {
         onChange={formik.handleChange}
         value={formik.values.name}
       />
-      {/* <p style={{color: "red"}}>{formik.errors.name}</p>
+      <p style={{color: "red"}}>{formik.errors.name}</p>
 
       <label htmlFor="favorite">Favorite Item?</label><br/>
       <input
@@ -59,6 +59,16 @@ function AddItemForm({ onAddItem }) {
       />
       <p style={{color: "red"}}>{formik.errors.favorite}</p>
 
+      <label htmlFor="user_id">User</label><br/>
+      <input
+        id="user_id"
+        name="user_id"
+        autoComplete="off"
+        onChange={formik.handleChange}
+        value={formik.values.user_id}
+      />
+      <p style={{color: "red"}}>{formik.errors.user_id}</p>
+
       <label htmlFor="shop_id">Shop</label><br/>
       <input
         id="shop_id"
@@ -69,7 +79,6 @@ function AddItemForm({ onAddItem }) {
       />
       <p style={{color: "red"}}>{formik.errors.shop_id}</p>
 
- */}
       <button type="submit">Add</button>
     </form>
   )
