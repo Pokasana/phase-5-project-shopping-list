@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-function AddItemForm({ onAddItem }) {
+function AddItemForm({ refresh }) {
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Must enter an item name"),
@@ -27,9 +27,10 @@ function AddItemForm({ onAddItem }) {
         },
         body: JSON.stringify(values)
       })
-      .then(r => r.json())
-      .then(newItem => {
-        onAddItem(newItem);
+      .then(r => {
+        if (r.status == 201) {
+          refresh()
+        }
       })
       resetForm()
     }

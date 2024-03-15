@@ -1,7 +1,7 @@
 import React from "react";
 import AddItemForm from "./AddItemForm";
 
-function Items({ shopsList, isLoaded, onAddItem, clickHandler}) {
+function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 
   if (!isLoaded) return <h3>Loading...</h3>
 
@@ -21,7 +21,7 @@ function Items({ shopsList, isLoaded, onAddItem, clickHandler}) {
 										{name}
 										&nbsp;&nbsp;&nbsp;
 										<button onClick={() => {
-											clickHandler(id, shop_id)
+											clickHandler(id)
 											}}>
 											Got it!
 										</button>
@@ -32,7 +32,7 @@ function Items({ shopsList, isLoaded, onAddItem, clickHandler}) {
 					</div>
 				)
 			})}
-			<AddItemForm onAddItem={onAddItem}/>
+			<AddItemForm refresh={refresh}/>
 		</div>
 	)
 };

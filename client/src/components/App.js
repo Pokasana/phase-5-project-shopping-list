@@ -30,10 +30,6 @@ function App() {
     setCurrentUser(userName)
   };
 
-  function onAddUser() {
-    setRefreshPage(!refreshPage)
-  };
-
   //shops
 	useEffect(() => {
     fetch('http://127.0.0.1:5555/shops')
@@ -43,11 +39,7 @@ function App() {
       setIsLoaded(true);
     })
     }, [refreshPage])
-    
-  function onAddShop() {
-    setRefreshPage(!refreshPage)
-  };
-
+  
 	function onShopDelete(id) {
 
 		fetch(`http://127.0.0.1:5555/shops/${id}`, {
@@ -56,13 +48,13 @@ function App() {
 		.then(r => r.json())
 		.then((res) => {
       if (res.delete_successful === true) {
-        setRefreshPage(!refreshPage)
+        refresh()
       }
 		})
 	};
 
   //Items
-	function onDeleteItem(id, shop_id) {
+	function onDeleteItem(id) {
 
 		fetch(`http://127.0.0.1:5555/items/${id}`, {
 			method: "DELETE",
@@ -70,27 +62,22 @@ function App() {
 		.then(r => r.json())
 		.then((res) => {
       if (res.delete_successful === true) {
-        setRefreshPage(!refreshPage)
+        refresh()
       }
 		});
-	};
-
-	function onAddItem(newItem) {
-		console.log(newItem)
-    // setRefreshPage(!refreshPage)
 	};
 
   return (
     <div>
       <Switch>
         <Route exact path="/">
-          <Items shopsList={shopsList} isLoaded={isLoaded} onAddItem={onAddItem} clickHandler={onDeleteItem}/>
+          <Items shopsList={shopsList} isLoaded={isLoaded} clickHandler={onDeleteItem} refresh={refresh}/>
         </Route>
         <Route path="/login">
-          <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} onAddUser={onAddUser} refresh={refresh} />
+          <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} refresh={refresh} />
         </Route>
         <Route path="/shops">
-          <Shops shopsList={shopsList} isLoaded={isLoaded} onAddShop={onAddShop} clickHandler={onShopDelete} />
+          <Shops shopsList={shopsList} isLoaded={isLoaded} clickHandler={onShopDelete} refresh={refresh}/>
         </Route>
       </Switch>
     </div>

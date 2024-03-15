@@ -1,7 +1,7 @@
 import React from "react";
 import AddShopForm from "./AddShopForm"
 
-function Shops({ shopsList, onAddShop, clickHandler, isLoaded }) {
+function Shops({ shopsList, clickHandler, isLoaded, refresh }) {
 
   if (!isLoaded) return <h3>Loading...</h3>
 
@@ -23,7 +23,7 @@ function Shops({ shopsList, onAddShop, clickHandler, isLoaded }) {
 				})}
 			</ul>
 
-			<AddShopForm onAddShop={onAddShop} />
+			<AddShopForm refresh={refresh} />
 
 		</div>
 	)

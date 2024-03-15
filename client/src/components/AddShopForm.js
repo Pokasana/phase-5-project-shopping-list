@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-function AddShopForm({ onAddShop }) {
+function AddShopForm({ refresh }) {
 
   const formSchema = yup.object().shape({
     shop: yup.string().required("Must enter a shop name")
@@ -21,9 +21,10 @@ function AddShopForm({ onAddShop }) {
         },
         body: JSON.stringify(values.shop)
       })
-      .then(r => r.json())
-      .then(newShop => {
-        onAddShop(newShop);
+      .then(r => {
+        if (r.status == 201) {
+          refresh()
+        }
       })
       resetForm()
     }
