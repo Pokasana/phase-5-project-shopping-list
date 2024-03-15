@@ -9,6 +9,11 @@ function App() {
   const [isLoaded,  setIsLoaded] = useState(false);
   const [currentUser, setCurrentUser]  = useState("");
 	const [shopsList, setShopsList] = useState([])
+  const [refreshPage,  setRefreshPage] = useState(false)
+
+  function refresh() {
+    setRefreshPage(!refreshPage)
+  };
 
   //users
   //move this down  to Login component later - refer Shops
@@ -19,14 +24,14 @@ function App() {
       setUsersList(users);
       setIsLoaded(true);
     })
-  }, []);
+  }, [refreshPage]);
 
   function loginHandler(userName) {
     setCurrentUser(userName)
   };
 
-  function onAddUser(newUser) {
-    setUsersList([...usersList, newUser])
+  function onAddUser() {
+    setRefreshPage(!refreshPage)
   };
 
   //shops
@@ -37,10 +42,10 @@ function App() {
       setShopsList(data);
       setIsLoaded(true);
     })
-    }, [])
+    }, [refreshPage])
     
-  function onAddShop(newShop) {
-    setShopsList([...shopsList, newShop])
+  function onAddShop() {
+    setRefreshPage(!refreshPage)
   };
 
 	function onShopDelete(id) {
@@ -49,10 +54,10 @@ function App() {
 			method: "DELETE",
 		})
 		.then(r => r.json())
-		.then(() => {
-			setShopsList(shops => {
-				return shops.filter(shop => shop.id !== id)
-			})
+		.then((res) => {
+      if (res.delete_successful === true) {
+        setRefreshPage(!refreshPage)
+      }
 		})
 	};
 
@@ -63,24 +68,16 @@ function App() {
 			method: "DELETE",
 		})
 		.then(r => r.json())
-		.then(() => {
-			const filteredItems = []
-
-			shopsList.map(shop => {
-				if (shop.id === shop_id) {
-					shop.items = shop.items.filter(item => item.id !== id)
-					filteredItems.push(shop)
-				}
-				else filteredItems.push(shop)
-			});
-
-			setShopsList(filteredItems)
-
+		.then((res) => {
+      if (res.delete_successful === true) {
+        setRefreshPage(!refreshPage)
+      }
 		});
 	};
 
 	function onAddItem(newItem) {
 		console.log(newItem)
+    // setRefreshPage(!refreshPage)
 	};
 
   return (
@@ -90,7 +87,7 @@ function App() {
           <Items shopsList={shopsList} isLoaded={isLoaded} onAddItem={onAddItem} clickHandler={onDeleteItem}/>
         </Route>
         <Route path="/login">
-          <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} onAddUser={onAddUser} />
+          <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} onAddUser={onAddUser} refresh={refresh} />
         </Route>
         <Route path="/shops">
           <Shops shopsList={shopsList} isLoaded={isLoaded} onAddShop={onAddShop} clickHandler={onShopDelete} />

@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from 'formik';
 import * as yup from "yup";
 
-function AddUserForm({ onAddUser }) {
+function AddUserForm({ refresh }) {
 
   const formSchema = yup.object().shape({
     user: yup.string().required("Must enter an user name")
@@ -21,14 +21,13 @@ function AddUserForm({ onAddUser }) {
         },
         body: JSON.stringify(values.user, null, 2)
       })
-      .then(r => r.json())
-      .then(newUser => {
-        console.log(newUser);
-        onAddUser(newUser);
+      .then(r => {
+        if (r.status == 201) {
+          refresh();
+        }
       })
       resetForm();
-      console.log(formik.errors)
-      }
+    }
   })
 
   return (

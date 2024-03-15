@@ -1,7 +1,7 @@
 import React from "react";
 import AddUserForm from "./AddUserForm"
 
-function Login({usersList, isLoaded, loginHandler, onAddUser}) {
+function Login({usersList, isLoaded, loginHandler, onAddUser, refresh}) {
 
     if (!isLoaded) return <h3>Loading...</h3>
 
@@ -26,7 +26,7 @@ function Login({usersList, isLoaded, loginHandler, onAddUser}) {
                 </ul>
             </div>
 
-			<AddUserForm onAddUser={onAddUser}/>
+			<AddUserForm onAddUser={onAddUser} refresh={refresh}/>
 			
         </div>
     )
