@@ -1,42 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import AddItemForm from "./AddItemForm";
 
 function Items({ shopsList, isLoaded, onAddItem, clickHandler}) {
-	// const [shops, setShops] = useState([])
-
-	// useEffect(() => {
-	// 	fetch('/shops')
-	// 	.then(r => r.json())
-	// 	.then(data => {
-	// 		setShops(data)
-	// 	})
-	// },[])
-
-	// function clickHandler(id, shop_id) {
-
-	// 	fetch(`http://127.0.0.1:5555/items/${id}`, {
-	// 		method: "DELETE",
-	// 	})
-	// 	.then(r => r.json())
-	// 	.then(() => {
-	// 		const filteredItems = []
-
-	// 		shops.map(shop => {
-	// 			if (shop.id === shop_id) {
-	// 				shop.items = shop.items.filter(item => item.id !== id)
-	// 				filteredItems.push(shop)
-	// 			}
-	// 			else filteredItems.push(shop)
-	// 		});
-
-	// 		setShops(filteredItems)
-
-	// 	});
-	// };
-
-	// function onAddItem(newItem) {
-	// 	console.log(newItem)
-	// };
 
   if (!isLoaded) return <h3>Loading...</h3>
 
