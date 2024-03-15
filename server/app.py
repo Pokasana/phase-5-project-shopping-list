@@ -96,6 +96,29 @@ class Items(Resource):
 
         return response
     
+    def post(self):
+        print("Received post request")
+        print(request.get_json())
+
+        request_json = request.get_json()
+
+        new_item =  Item(
+            name = request_json["name"],
+            favorite = request_json["favorite"],
+            user_id = request_json["user_id"],
+            shop_id = request_json["shop_id"]
+        )
+
+        db.session.add(new_item)
+        db.session.commit()
+
+        response  = make_response(
+            new_item.to_dict(),
+            201
+        )
+
+        return response
+    
 class ItemById(Resource):
     def get(self, id):
         item = Item.query.filter_by(id=id).first()

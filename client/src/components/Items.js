@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import AddItemForm from "./AddItemForm";
 
 function Items() {
 	const [shops, setShops] = useState([])
@@ -33,8 +34,9 @@ function Items() {
 		});
 	};
 
-	function onAddItem() {
+	function onAddItem(newItem) {
 		console.log("Handled adding an item")
+		console.log(newItem)
 	};
 
 	return (
@@ -64,6 +66,7 @@ function Items() {
 					</div>
 				)
 			})}
+			<AddItemForm onAddItem={onAddItem}/>
 		</div>
 	)
 };
