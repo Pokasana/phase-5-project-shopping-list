@@ -7,7 +7,6 @@ import Items from './Items'
 function App() {
   const [usersList, setUsersList] = useState([]);
   const [isLoaded,  setIsLoaded] = useState(false);
-  const [currentUser, setCurrentUser]  = useState("");
 	const [shopsList, setShopsList] = useState([])
   const [refreshPage,  setRefreshPage] = useState(false)
 
@@ -25,10 +24,6 @@ function App() {
       setIsLoaded(true);
     })
   }, [refreshPage]);
-
-  function loginHandler(userName) {
-    setCurrentUser(userName)
-  };
 
   //shops
 	useEffect(() => {
@@ -71,10 +66,10 @@ function App() {
     <div>
       <Switch>
         <Route exact path="/">
-          <Items shopsList={shopsList} isLoaded={isLoaded} currentUser={currentUser} clickHandler={onDeleteItem} refresh={refresh}/>
+          <Items shopsList={shopsList} isLoaded={isLoaded} clickHandler={onDeleteItem} refresh={refresh}/>
         </Route>
         <Route path="/users">
-          <Users usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} refresh={refresh} />
+          <Users usersList={usersList} isLoaded={isLoaded} refresh={refresh} />
         </Route>
         <Route path="/shops">
           <Shops shopsList={shopsList} isLoaded={isLoaded} clickHandler={onShopDelete} refresh={refresh}/>
