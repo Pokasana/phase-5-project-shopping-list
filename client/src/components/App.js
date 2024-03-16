@@ -25,6 +25,18 @@ function App() {
     })
   }, [refreshPage]);
 
+  function onUserDelete(id) {
+		fetch(`http://127.0.0.1:5555/users/${id}`, {
+			method: "DELETE",
+		})
+		.then(r => r.json())
+		.then((res) => {
+      if (res.delete_successful === true) {
+        refresh()
+      }
+		})
+	};
+
   //shops
 	useEffect(() => {
     fetch('http://127.0.0.1:5555/shops')
@@ -36,7 +48,6 @@ function App() {
     }, [refreshPage])
   
 	function onShopDelete(id) {
-
 		fetch(`http://127.0.0.1:5555/shops/${id}`, {
 			method: "DELETE",
 		})
@@ -49,8 +60,7 @@ function App() {
 	};
 
   //Items
-	function onDeleteItem(id) {
-
+	function onItemDelete(id) {
 		fetch(`http://127.0.0.1:5555/items/${id}`, {
 			method: "DELETE",
 		})
@@ -66,10 +76,10 @@ function App() {
     <div>
       <Switch>
         <Route exact path="/">
-          <Items shopsList={shopsList} isLoaded={isLoaded} clickHandler={onDeleteItem} refresh={refresh}/>
+          <Items shopsList={shopsList} isLoaded={isLoaded} clickHandler={onItemDelete} refresh={refresh}/>
         </Route>
         <Route path="/users">
-          <Users usersList={usersList} isLoaded={isLoaded} refresh={refresh} />
+          <Users usersList={usersList} isLoaded={isLoaded} clickHandler={onUserDelete} refresh={refresh} />
         </Route>
         <Route path="/shops">
           <Shops shopsList={shopsList} isLoaded={isLoaded} clickHandler={onShopDelete} refresh={refresh}/>

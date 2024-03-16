@@ -12,13 +12,13 @@ function Shops({ shopsList, clickHandler, isLoaded, refresh }) {
 				{shopsList.map(shop => {
 					const {id, name} = shop
 					return (
-							<li key={id}>
-								{name}
-								&nbsp;&nbsp;&nbsp;
-								<button onClick={() => {
-									clickHandler(id);
-								}}>Delete</button>
-							</li>
+						<li key={id}>
+							{name}
+							&nbsp;&nbsp;&nbsp;
+							<button onClick={() => {
+								clickHandler(id);
+							}}>Delete</button>
+						</li>
 					)
 				})}
 			</ul>

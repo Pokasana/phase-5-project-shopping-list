@@ -14,7 +14,7 @@ function AddUserForm({ refresh }) {
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) =>  {
-      fetch("http://127.0.0.1:5555/login", {
+      fetch("http://127.0.0.1:5555/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

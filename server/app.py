@@ -38,6 +38,24 @@ class Users(Resource):
         )
 
         return response
+    
+class UserById(Resource):
+    def get(self, id):
+        response_dict = User.query.filter_by(id=id).first()
+
+        response = make_response(
+            response_dict,
+            200
+        )
+
+        return response
+    
+    def delete(self, id):
+        user  = User.query.filter_by(id=id).first()
+        db.session.delete(user)
+        db.session.commit()
+
+        return {"delete_successful": True, "message": "User deleted."}
 
 class Shops(Resource):
     def get(self):
@@ -139,6 +157,7 @@ class ItemById(Resource):
         return {"delete_successful": True, "message": "Item deleted."}
 
 api.add_resource(Users, '/users')
+api.add_resource(UserById, '/users/<int:id>')
 api.add_resource(Shops, '/shops')
 api.add_resource(ShopById, '/shops/<int:id>')
 api.add_resource(Items, '/items')

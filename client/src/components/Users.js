@@ -1,7 +1,7 @@
 import React from "react";
 import AddUserForm from "./AddUserForm"
 
-function Users({usersList, isLoaded, refresh}) {
+function Users({usersList, isLoaded, clickHandler, refresh}) {
 
     if (!isLoaded) return <h3>Loading...</h3>
     
@@ -15,7 +15,14 @@ function Users({usersList, isLoaded, refresh}) {
                     {usersList.map(user => {
                         const { id, name } = user
                         return (
-							<li key={id}>{name}</li>
+
+													<li key={id}>
+														{name}
+														&nbsp;&nbsp;&nbsp;
+														<button onClick={() => {
+															clickHandler(id);
+														}}>Delete</button>
+													</li>
                         )
                     })}
                 </ul>
