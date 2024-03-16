@@ -12,7 +12,7 @@ from config import app, db, api
 from models import User, Shop, Item
 
 # Views go here!
-class Login(Resource):
+class Users(Resource):
     def get(self):
         response_dict_list = [user.to_dict() for user in User.query.all()]
 
@@ -138,7 +138,7 @@ class ItemById(Resource):
 
         return {"delete_successful": True, "message": "Item deleted."}
 
-api.add_resource(Login, '/login')
+api.add_resource(Users, '/users')
 api.add_resource(Shops, '/shops')
 api.add_resource(ShopById, '/shops/<int:id>')
 api.add_resource(Items, '/items')

@@ -1,13 +1,14 @@
 import React from "react";
 import AddItemForm from "./AddItemForm";
 
-function Items({ shopsList, isLoaded, clickHandler, refresh}) {
+function Items({ shopsList, isLoaded, clickHandler, currentUser, refresh}) {
 
   if (!isLoaded) return <h3>Loading...</h3>
 
 	return (
 		<div className="items">
 			<h1>Shopping List</h1>
+			<h5>Hi {currentUser} !</h5>
 			{shopsList.map(shop => {
 				const { id, name, items } = shop
 				return (

@@ -18,7 +18,7 @@ function App() {
   //users
   //move this down  to Login component later - refer Shops
   useEffect(() =>  {
-    fetch('http://127.0.0.1:5555/login')
+    fetch('http://127.0.0.1:5555/users')
     .then(r => r.json())
     .then(users => {
       setUsersList(users);
@@ -71,7 +71,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path="/">
-          <Items shopsList={shopsList} isLoaded={isLoaded} clickHandler={onDeleteItem} refresh={refresh}/>
+          <Items shopsList={shopsList} isLoaded={isLoaded} currentUser={currentUser} clickHandler={onDeleteItem} refresh={refresh}/>
         </Route>
         <Route path="/login">
           <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} refresh={refresh} />
