@@ -1,7 +1,7 @@
 import React from "react";
 import AddUserForm from "./AddUserForm"
 
-function Login({usersList, isLoaded, loginHandler, refresh}) {
+function Users({usersList, isLoaded, loginHandler, refresh}) {
 
     if (!isLoaded) return <h3>Loading...</h3>
 
@@ -32,5 +32,5 @@ function Login({usersList, isLoaded, loginHandler, refresh}) {
     )
 }
 
-export default Login;
+export default Users;
     

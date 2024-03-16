@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import  Login from './Login'
+import  Users from './Users'
 import  Shops from './Shops'
 import Items from './Items'
 
@@ -73,8 +73,8 @@ function App() {
         <Route exact path="/">
           <Items shopsList={shopsList} isLoaded={isLoaded} currentUser={currentUser} clickHandler={onDeleteItem} refresh={refresh}/>
         </Route>
-        <Route path="/login">
-          <Login usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} refresh={refresh} />
+        <Route path="/users">
+          <Users usersList={usersList} isLoaded={isLoaded} loginHandler={loginHandler} currentUser={currentUser} refresh={refresh} />
         </Route>
         <Route path="/shops">
           <Shops shopsList={shopsList} isLoaded={isLoaded} clickHandler={onShopDelete} refresh={refresh}/>
