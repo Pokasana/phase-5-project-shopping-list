@@ -119,12 +119,13 @@ class Items(Resource):
         print(request.get_json())
 
         request_json = request.get_json()
+        
 
         new_item =  Item(
             name = request_json["name"],
             favorite = request_json["favorite"],
-            user_id = request_json["user_id"],
-            shop_id = request_json["shop_id"]
+            user_id = User.query.filter(User.name == request_json["user_name"]).first().id,
+            shop_id = Shop.query.filter(Shop.name == request_json["shop_name"]).first().id
         )
 
         db.session.add(new_item)

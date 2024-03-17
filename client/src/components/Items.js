@@ -15,9 +15,9 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 						<h4>{name}</h4>
 						<ul>
 							{items.map(item => {
-								const { id, name, shop_id } = item
+								const { id, name } = item
 								return (
-									<li key={id}>
+									<li key={id} onClick={() => console.log('clicked')}>
 										{name}
 										&nbsp;&nbsp;&nbsp;
 										<button onClick={() => {

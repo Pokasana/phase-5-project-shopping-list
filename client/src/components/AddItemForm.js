@@ -7,16 +7,16 @@ function AddItemForm({ refresh }) {
   const formSchema = yup.object().shape({
     name: yup.string().required("Must enter an item name"),
     favorite: yup.bool().default(() => false),
-    user_id: yup.number(),
-    shop_id: yup.number()
+    user_name: yup.string(),
+    shop_name: yup.string()
   });
 
   const formik = useFormik({
     initialValues: {
       name: "",
       favorite: false,
-      user_id: "",
-      shop_id: ""
+      user_name: "",
+      shop_name: ""
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) => {
@@ -60,25 +60,26 @@ function AddItemForm({ refresh }) {
       />
       <p style={{color: "red"}}>{formik.errors.favorite}</p>
 
-      <label htmlFor="user_id">User</label><br/>
+      <label htmlFor="user_name">User</label><br/>
       <input
-        id="user_id"
-        name="user_id"
+        id="user_name"
+        name="user_name"
         autoComplete="off"
-        onChange={formik.handleChange}
-        value={formik.values.user_id}
-      />
-      <p style={{color: "red"}}>{formik.errors.user_id}</p>
 
-      <label htmlFor="shop_id">Shop</label><br/>
+        onChange={formik.handleChange}
+        value={formik.values.user_name}
+      />
+      <p style={{color: "red"}}>{formik.errors.user_name}</p>
+
+      <label htmlFor="shop_name">Shop</label><br/>
       <input
-        id="shop_id"
-        name="shop_id"
+        id="shop_name"
+        name="shop_name"
         autoComplete="off"
         onChange={formik.handleChange}
-        value={formik.values.shop_id}
+        value={formik.values.shop_name}
       />
-      <p style={{color: "red"}}>{formik.errors.shop_id}</p>
+      <p style={{color: "red"}}>{formik.errors.shop_name}</p>
 
       <button type="submit">Add</button>
     </form>
