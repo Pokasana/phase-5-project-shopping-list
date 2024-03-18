@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import AddItemForm from "./AddItemForm";
+import ItemInfo from "./ItemInfo";
 
 function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 
@@ -18,7 +20,7 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 								const { id, name } = item
 								return (
 									<li key={id} onClick={() => console.log('clicked')}>
-										{name}
+										<Link to={`items/${id}`}>{name}</Link>
 										&nbsp;&nbsp;&nbsp;
 										<button onClick={() => {
 											clickHandler(id)

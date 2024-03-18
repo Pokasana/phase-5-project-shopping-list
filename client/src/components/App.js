@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory, useRouteMatch } from "react-router-dom";
 import  Users from './Users'
 import  Shops from './Shops'
 import Items from './Items'
+import ItemInfo from './ItemInfo'
 
 function App() {
   const [usersList, setUsersList] = useState([]);
   const [isLoaded,  setIsLoaded] = useState(false);
 	const [shopsList, setShopsList] = useState([])
   const [refreshPage,  setRefreshPage] = useState(false)
+  const history = useHistory();
+  const match = useRouteMatch();
 
   function refresh() {
     setRefreshPage(!refreshPage)
@@ -72,11 +75,19 @@ function App() {
 		});
 	};
 
+  function navigateItemEdit(id) {
+    history.push(`/items/${id}`)
+  };
+
+
   return (
     <div>
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/items">
           <Items shopsList={shopsList} isLoaded={isLoaded} clickHandler={onItemDelete} refresh={refresh}/>
+        </Route>
+        <Route path="/items/:itemId">
+          <ItemInfo />
         </Route>
         <Route path="/users">
           <Users usersList={usersList} isLoaded={isLoaded} clickHandler={onUserDelete} refresh={refresh} />
@@ -87,6 +98,7 @@ function App() {
       </Switch>
     </div>
   );
-}
+
+};
 
 export default App;

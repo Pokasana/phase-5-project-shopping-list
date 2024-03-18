@@ -45,6 +45,7 @@ function AddItemForm({ refresh }) {
         id="name"
         name="name"
         autoComplete="off"
+        placeholder="Enter item name"
         onChange={formik.handleChange}
         value={formik.values.name}
       />
@@ -65,7 +66,7 @@ function AddItemForm({ refresh }) {
         id="user_name"
         name="user_name"
         autoComplete="off"
-
+        placeholder="Enter user name"
         onChange={formik.handleChange}
         value={formik.values.user_name}
       />
@@ -76,6 +77,7 @@ function AddItemForm({ refresh }) {
         id="shop_name"
         name="shop_name"
         autoComplete="off"
+        placeholder="Enter shop name"
         onChange={formik.handleChange}
         value={formik.values.shop_name}
       />
