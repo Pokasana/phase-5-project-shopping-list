@@ -45,7 +45,6 @@ function EditItemForm ({ item, shop, refresh, onEditId }) {
 				id="name"
 				name="name"
 				autoComplete="off"
-				// placeholder={item.name}
 				onChange={formik.handleChange}
 				value={formik.values.name}
 			/>
@@ -56,6 +55,7 @@ function EditItemForm ({ item, shop, refresh, onEditId }) {
 				id="favorite"
 				name="favorite"
 				type="checkbox"
+				checked={item.favorite}
 				onChange={formik.handleChange}
 				value={formik.values.favorite}
 			/>
@@ -66,7 +66,6 @@ function EditItemForm ({ item, shop, refresh, onEditId }) {
 				id="user_name"
 				name="user_name"
 				autoComplete="off"
-				// placeholder={item.user.name}
 				onChange={formik.handleChange}
 				value={formik.values.user_name}
 			/>
@@ -77,7 +76,6 @@ function EditItemForm ({ item, shop, refresh, onEditId }) {
 				id="shop_name"
 				name="shop_name"
 				autoComplete="off"
-				// placeholder={item.shop.name}
 				onChange={formik.handleChange}
 				value={formik.values.shop_name}
 			/>

@@ -22,9 +22,9 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 								const { id, name } = item
 								return (
 									<li key={id} onClick={() => console.log('clicked')}>
-										<Link to={`items/${id}`}>{name}</Link>
+										{name}
 										&nbsp;&nbsp;&nbsp;
-										
+
 										<button id="bought" onClick={() => {
 											clickHandler(id)
 											}}>
