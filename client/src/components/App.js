@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import  Users from './Users'
 import  Shops from './Shops'
 import Items from './Items'
+import NavBar from './NavBar'
 
 function App() {
   const [usersList, setUsersList] = useState([]);
@@ -62,6 +63,7 @@ function App() {
 
   return (
     <div>
+      <NavBar />
       <Switch>
         <Route exact path="/items">
           <Items shopsList={shopsList} usersList={usersList} isLoaded={isLoaded} refresh={refresh}/>

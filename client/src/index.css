@@ -50,3 +50,13 @@ button:hover {
   background-color: #191970;
   color: white;
 }
+
+#nav_bar {
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+#nav_link {
+  margin-right: 10px;
+}
