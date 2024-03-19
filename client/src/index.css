@@ -9,8 +9,12 @@ body {
   font-family: 'Gill Sans', Tahoma, sans-serif;
 }
 
+p {
+  margin: 16px 5px;
+}
+
 h1 {
-  color:  #191970
+  color:  #191970;
 }
 
 h3 {
@@ -24,11 +28,11 @@ ul {
 }
 
 li {
-  color: #d99ac5
+  color: #d99ac5;
 }
 
 .login li:hover  {
-  color: #191970
+  color: #191970;
 }
 
 button {

@@ -6,9 +6,6 @@ function ItemCard() {
 	const [item, setItem] = useState({});
 	const [isLoaded, setIsLoaded] = useState(false);
 
-	console.log(params)
-	console.log(params.itemId)
-
 	useEffect(() => {
 		fetch(`http://127.0.0.1:5555/items/${params.itemId}`)
 		.then(r => r.json())
@@ -23,10 +20,14 @@ function ItemCard() {
 		<div className="item_card">
 			{ isLoaded
 				? <>
-						<p>Product: {item.name}</p>
-						<p>Favorite?: {item.favorite === true ? 'Yes' : 'No'}</p>
-						<p>Shop: {item.shop.name}</p>
-						<p>Added by: {item.user.name}</p>
+						<h3>Product:</h3>
+						<p>{item.name}</p>
+						<h3>Favorite?:</h3>
+						<p>{item.favorite === true ? 'Yes' : 'No'}</p>
+						<h3>Shop:</h3>
+						<p>{item.shop.name}</p>
+						<h3>Added by:</h3>
+						<p>{item.user.name}</p>
 					</>
 				: <div>Loading...</div>
 
