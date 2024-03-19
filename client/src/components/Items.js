@@ -24,7 +24,7 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 										<button onClick={() => {
 											clickHandler(id)
 											}}>
-											Got it!
+											&#10003;
 										</button>
 									</li>
 									)

@@ -149,6 +149,9 @@ class ItemById(Resource):
 
         return response
     
+    def post(self, id):
+        request_json = request.get_json()
+    
     def delete(self, id):
         item = Item.query.filter_by(id=id).first()
 
