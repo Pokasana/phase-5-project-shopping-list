@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import AddItemForm from "./AddItemForm";
 import EditItemForm from "./EditItemForm";
 
@@ -8,6 +7,10 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 	const [onAdd, setOnAdd] = useState(false)
 
   if (!isLoaded) return <h3>Loading...</h3>
+
+	function resetEditId () {
+		setOnEditId(null)
+	};
 
 	return (
 		<div className="items">
@@ -35,7 +38,7 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 											✏️
 										</button>
 
-										<EditItemForm item={item} shop={shop} refresh={refresh} onEditId={onEditId}/>
+										<EditItemForm item={item} shop={shop} refresh={refresh} onEditId={onEditId} resetEditId={resetEditId}/>
 									</li>
 									)
 							})}

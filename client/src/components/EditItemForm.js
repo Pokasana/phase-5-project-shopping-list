@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-function EditItemForm ({ item, shop, refresh, onEditId }) {
+function EditItemForm ({ item, shop, refresh, onEditId, resetEditId }) {
 
 	const formSchema = yup.object().shape({
 		name: yup.string(),
@@ -19,7 +19,7 @@ function EditItemForm ({ item, shop, refresh, onEditId }) {
 			shop_name: shop.name
 		},
 		validationSchema: formSchema,
-		onSubmit: (values, { resetForm }) => {
+		onSubmit: (values) => {
 			fetch(`http://127.0.0.1:5555/items/${item.id}`, {
 				method: "PATCH",
 				headers: {
@@ -29,12 +29,12 @@ function EditItemForm ({ item, shop, refresh, onEditId }) {
 			})
 			.then(r => {
 				if (r.status === 200) {
-					refresh()
+					refresh();
+					resetEditId();
 				}
 			})
-			resetForm()
 		}
-	})
+	});
 
 	return (
 		<form className="edit_item" onSubmit={formik.handleSubmit} style={{display: onEditId === item.id ? "" : "none"}}>
