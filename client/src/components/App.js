@@ -64,7 +64,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path="/items">
-          <Items shopsList={shopsList} isLoaded={isLoaded} refresh={refresh}/>
+          <Items shopsList={shopsList} usersList={usersList} isLoaded={isLoaded} refresh={refresh}/>
         </Route>
         <Route path="/users">
           <Users usersList={usersList} isLoaded={isLoaded} clickHandler={onUserDelete} refresh={refresh} />

@@ -1,7 +1,7 @@
 import React from "react"
 import ItemList from "./ItemList"
 
-function ListByShops ({ shopsList, refresh, clickHandler }) {
+function ListByShops ({ shopsList, filterBy, refresh, clickHandler }) {
 
 	return (
 		<div>
@@ -11,7 +11,7 @@ function ListByShops ({ shopsList, refresh, clickHandler }) {
 					<div key={id}>
 						<h4>{name}</h4>
 						<ul>
-							<ItemList items={items} shop={shop} refresh={refresh} clickHandler={clickHandler} />
+							<ItemList items={items} filterBy={filterBy} filterElement={shop} refresh={refresh} clickHandler={clickHandler} />
 						</ul>
 					</div>
 				)

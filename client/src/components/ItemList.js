@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EditItemForm from "./EditItemForm";
 
-function ItemList ({ items, shop, refresh, clickHandler }) {
+function ItemList ({ items, filterBy, filterElement, refresh, clickHandler }) {
 	const [onEditId, setOnEditId] = useState(null)
 
 	function resetEditId () {
@@ -27,7 +27,7 @@ function ItemList ({ items, shop, refresh, clickHandler }) {
 							✏️
 						</button>
 
-						<EditItemForm item={item} shop={shop} refresh={refresh} onEditId={onEditId} resetEditId={resetEditId}/>
+						<EditItemForm item={item} filterBy={filterBy} filterElement={filterElement} refresh={refresh} onEditId={onEditId} resetEditId={resetEditId}/>
 					</li>
 				)
 			})}

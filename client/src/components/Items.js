@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import AddItemForm from "./AddItemForm";
-import ListByShops from "./ListByShops"
-// import ItemList from "./ItemList"
+import ListByShops from "./ListByShops";
+import ListByUsers from "./ListByUsers";
 
-function Items({ shopsList, isLoaded, refresh}) {
+function Items({ shopsList, usersList, isLoaded, refresh}) {
 	const [onAddItem, setOnAddItem] = useState(false)
 	const [filterBy, setFilterBy] = useState('shops')
 
@@ -26,7 +26,8 @@ function Items({ shopsList, isLoaded, refresh}) {
 			<h1>Shopping List</h1>
 
 			<div id="sort">
-				<label>Sort by:</label><br/>
+				<h4>Sort by:</h4><br/>
+
 				<select name="items" id="items" onChange={(e) => setFilterBy(e.target.value)}>
 					<option value="shops">Shops</option>
 					<option value="users">Users</option>
@@ -36,12 +37,12 @@ function Items({ shopsList, isLoaded, refresh}) {
 			<div className="item_list_container">
 				{
 					filterBy === "shops"
-					? <ListByShops shopsList={shopsList} refresh={refresh} clickHandler={onItemDelete} />
-					: <p>list by users</p>
+					? <ListByShops shopsList={shopsList} filterBy={filterBy} refresh={refresh} clickHandler={onItemDelete} />
+					: <ListByUsers usersList={usersList} filterBy={filterBy} refresh={refresh} clickHandler={onItemDelete} />
 				}
 
 			</div>
-			
+
 			<button id="add_item" onClick={() => setOnAddItem(!onAddItem)}>Add Item</button>
 			<AddItemForm refresh={refresh} onAddItem={onAddItem} />
 		</div>

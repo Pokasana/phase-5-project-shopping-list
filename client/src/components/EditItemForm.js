@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-function EditItemForm ({ item, shop, refresh, onEditId, resetEditId }) {
+function EditItemForm ({ item, filterBy, filterElement, refresh, onEditId, resetEditId }) {
 
 	const formSchema = yup.object().shape({
 		name: yup.string(),
@@ -15,8 +15,8 @@ function EditItemForm ({ item, shop, refresh, onEditId, resetEditId }) {
 		initialValues: {
 			name: item.name,
 			favorite: item.favorite,
-			user_name: item.user.name,
-			shop_name: shop.name
+			user_name: filterBy === 'users' ? filterElement.name : item.user.name,
+			shop_name: filterBy === 'shops' ? filterElement.name : item.shop.name
 		},
 		validationSchema: formSchema,
 		onSubmit: (values) => {
