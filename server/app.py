@@ -115,11 +115,8 @@ class Items(Resource):
         return response
     
     def post(self):
-        print("Received post request")
-        print(request.get_json())
 
         request_json = request.get_json()
-        
 
         new_item =  Item(
             name = request_json["name"],
@@ -150,16 +147,29 @@ class ItemById(Resource):
         return response
     
     def patch(self, id):
+
         item = Item.query.filter_by(id=id).first()
-
-        request_json = request.get_json()
-
-        for attr in request_json:
-            setattr(item, attr, request_json[attr])
-
         print(item)
 
-        return {item.to_dict(), 200}
+        request_json = request.get_json()
+        print(request_json)
+
+        item.name = request_json["name"]
+        item.favorite = request_json["favorite"]
+        item.user_id = User.query.filter(User.name == request_json["user_name"]).first().id
+        item.shop_id = Shop.query.filter(Shop.name == request_json["shop_name"]).first().id
+        
+        print(item)
+
+        db.session.add(item)
+        db.session.commit()
+
+        response = make_response(
+            item.to_dict(),
+            200
+        )
+
+        return response
     
     def delete(self, id):
         item = Item.query.filter_by(id=id).first()
