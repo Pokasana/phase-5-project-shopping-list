@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import AddItemForm from "./AddItemForm";
-import ItemList from "./ItemList"
+import ListByShops from "./ListByShops"
+// import ItemList from "./ItemList"
 
 function Items({ shopsList, isLoaded, refresh}) {
 	const [onAddItem, setOnAddItem] = useState(false)
+	const [filterBy, setFilterBy] = useState('shops')
 
   if (!isLoaded) return <h3>Loading...</h3>
 
@@ -23,17 +25,23 @@ function Items({ shopsList, isLoaded, refresh}) {
 		<div className="items">
 			<h1>Shopping List</h1>
 
-			{shopsList.map(shop => {
-				const { id, name, items } = shop
-				return (
-					<div key={id}>
-						<h4>{name}</h4>
-						<ul>
-							<ItemList items={items} shop={shop} refresh={refresh} clickHandler={onItemDelete} />
-						</ul>
-					</div>
-				)
-			})}
+			<div id="sort">
+				<label>Sort by:</label><br/>
+				<select name="items" id="items" onChange={(e) => setFilterBy(e.target.value)}>
+					<option value="shops">Shops</option>
+					<option value="users">Users</option>
+				</select>
+			</div>
+
+			<div className="item_list_container">
+				{
+					filterBy === "shops"
+					? <ListByShops shopsList={shopsList} refresh={refresh} clickHandler={onItemDelete} />
+					: <p>list by users</p>
+				}
+
+			</div>
+			
 			<button id="add_item" onClick={() => setOnAddItem(!onAddItem)}>Add Item</button>
 			<AddItemForm refresh={refresh} onAddItem={onAddItem} />
 		</div>
