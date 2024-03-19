@@ -59,23 +59,12 @@ function App() {
 	};
 
   //Items
-	function onItemDelete(id) {
-		fetch(`http://127.0.0.1:5555/items/${id}`, {
-			method: "DELETE",
-		})
-		.then(r => r.json())
-		.then((res) => {
-      if (res.delete_successful === true) {
-        refresh()
-      }
-		});
-	};
 
   return (
     <div>
       <Switch>
         <Route exact path="/items">
-          <Items shopsList={shopsList} isLoaded={isLoaded} clickHandler={onItemDelete} refresh={refresh}/>
+          <Items shopsList={shopsList} isLoaded={isLoaded} refresh={refresh}/>
         </Route>
         <Route path="/users">
           <Users usersList={usersList} isLoaded={isLoaded} clickHandler={onUserDelete} refresh={refresh} />

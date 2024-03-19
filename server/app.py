@@ -115,7 +115,6 @@ class Items(Resource):
         return response
     
     def post(self):
-
         request_json = request.get_json()
 
         new_item =  Item(

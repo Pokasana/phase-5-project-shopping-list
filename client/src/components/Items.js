@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import AddItemForm from "./AddItemForm";
-import EditItemForm from "./EditItemForm";
+import ItemList from "./ItemList"
 
-function Items({ shopsList, isLoaded, clickHandler, refresh}) {
-	const [onEditId, setOnEditId] = useState(null)
+function Items({ shopsList, isLoaded, refresh}) {
 	const [onAdd, setOnAdd] = useState(false)
 
   if (!isLoaded) return <h3>Loading...</h3>
 
-	function resetEditId () {
-		setOnEditId(null)
+	function onItemDelete(id) {
+		fetch(`http://127.0.0.1:5555/items/${id}`, {
+			method: "DELETE",
+		})
+		.then(r => r.json())
+		.then((res) => {
+      if (res.delete_successful === true) {
+        refresh()
+      }
+		});
 	};
 
 	return (
@@ -22,27 +29,7 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 					<div key={id}>
 						<h4>{name}</h4>
 						<ul>
-							{items.map(item => {
-								const { id, name } = item
-								return (
-									<li key={id}>
-										{name}
-										&nbsp;&nbsp;&nbsp;
-
-										<button id="bought" onClick={() => {
-											clickHandler(id)
-											}}>
-											✔️
-										</button>
-
-										<button id="edit_item" onClick={() => {setOnEditId(onEditId === null ? id : null) }} >
-											✏️
-										</button>
-
-										<EditItemForm item={item} shop={shop} refresh={refresh} onEditId={onEditId} resetEditId={resetEditId}/>
-									</li>
-									)
-							})}
+							<ItemList items={items} shop={shop} refresh={refresh} clickHandler={onItemDelete} />
 						</ul>
 					</div>
 				)
