@@ -149,8 +149,17 @@ class ItemById(Resource):
 
         return response
     
-    def post(self, id):
+    def patch(self, id):
+        item = Item.query.filter_by(id=id).first()
+
         request_json = request.get_json()
+
+        for attr in request_json:
+            setattr(item, attr, request_json[attr])
+
+        print(item)
+
+        return {"message": "patch request handled"}
     
     def delete(self, id):
         item = Item.query.filter_by(id=id).first()
