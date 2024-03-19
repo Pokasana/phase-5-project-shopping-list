@@ -159,7 +159,7 @@ class ItemById(Resource):
 
         print(item)
 
-        return {"message": "patch request handled"}
+        return {item.to_dict(), 200}
     
     def delete(self, id):
         item = Item.query.filter_by(id=id).first()
