@@ -3,7 +3,7 @@ import AddItemForm from "./AddItemForm";
 import ItemList from "./ItemList"
 
 function Items({ shopsList, isLoaded, refresh}) {
-	const [onAdd, setOnAdd] = useState(false)
+	const [onAddItem, setOnAddItem] = useState(false)
 
   if (!isLoaded) return <h3>Loading...</h3>
 
@@ -34,8 +34,8 @@ function Items({ shopsList, isLoaded, refresh}) {
 					</div>
 				)
 			})}
-			<button id="add_item" onClick={() => setOnAdd(!onAdd)}>Add Item</button>
-			<AddItemForm refresh={refresh} onAdd={onAdd} />
+			<button id="add_item" onClick={() => setOnAddItem(!onAddItem)}>Add Item</button>
+			<AddItemForm refresh={refresh} onAddItem={onAddItem} />
 		</div>
 	)
 };
