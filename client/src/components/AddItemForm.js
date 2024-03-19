@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-function AddItemForm({ refresh }) {
+function AddItemForm({ refresh, onAdd }) {
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Must enter an item name"),
@@ -37,7 +37,7 @@ function AddItemForm({ refresh }) {
   })
 
   return (
-    <form className="add_item" onSubmit={formik.handleSubmit}>
+    <form className="add_item" onSubmit={formik.handleSubmit} style={{display: onAdd ? "" : "none"}}>
       <h3>Add a new Item</h3>
 
       <label htmlFor="name">Item Name</label><br/>

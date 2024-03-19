@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AddItemForm from "./AddItemForm";
 
 function Items({ shopsList, isLoaded, clickHandler, refresh}) {
+	const [onEdit, setOnEdit] = useState(false)
+	const [onAdd, setOnAdd] = useState(false)
 
   if (!isLoaded) return <h3>Loading...</h3>
 
@@ -21,10 +23,13 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 									<li key={id} onClick={() => console.log('clicked')}>
 										<Link to={`items/${id}`}>{name}</Link>
 										&nbsp;&nbsp;&nbsp;
-										<button onClick={() => {
+										<button id="bought" onClick={() => {
 											clickHandler(id)
 											}}>
 											&#10003;
+										</button>
+										<button id="edit_item" onClick={() => setOnEdit(!onEdit)} style={{fontSize: "90%"}}>
+											&#x270f;
 										</button>
 									</li>
 									)
@@ -33,7 +38,8 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 					</div>
 				)
 			})}
-			<AddItemForm refresh={refresh}/>
+			<button id="add_item" onClick={() => setOnAdd(!onAdd)}>Add Item</button>
+			<AddItemForm refresh={refresh} onAdd={onAdd} />
 		</div>
 	)
 };
