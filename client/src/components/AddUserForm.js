@@ -40,7 +40,7 @@ function AddUserForm({ refresh }) {
         onChange={formik.handleChange}
         value={formik.values.user}
       />
-      <button type="submit">Add</button>
+      <button type="submit">+</button>
 
       <p style={{color: "red"}}>{formik.errors.user}</p>
     </form>

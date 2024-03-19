@@ -7,7 +7,9 @@ function Shops({ shopsList, clickHandler, isLoaded, refresh }) {
 
 	return (
 		<div className="shops">
-			<h1>Shops</h1>
+			<h1>Shop Page</h1>
+
+			<h3>Shop List</h3>
 			<ul>
 				{shopsList.map(shop => {
 					const {id, name} = shop
@@ -17,7 +19,7 @@ function Shops({ shopsList, clickHandler, isLoaded, refresh }) {
 							&nbsp;&nbsp;&nbsp;
 							<button onClick={() => {
 								clickHandler(id);
-							}}>Delete</button>
+							}}>x</button>
 						</li>
 					)
 				})}

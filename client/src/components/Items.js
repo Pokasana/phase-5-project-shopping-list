@@ -21,11 +21,15 @@ function Items({ shopsList, usersList, isLoaded, refresh}) {
 		});
 	};
 
+	function resetOnAddItem() {
+		setOnAddItem(false)
+	}
+
 	return (
 		<div className="items">
 			<h1>Shopping List</h1>
 
-			<div id="sort">
+			<div id="sort_container">
 				<h4>Sort by:</h4><br/>
 
 				<select name="items" id="items" onChange={(e) => setFilterBy(e.target.value)}>
@@ -43,8 +47,10 @@ function Items({ shopsList, usersList, isLoaded, refresh}) {
 
 			</div>
 
-			<button id="add_item" onClick={() => setOnAddItem(!onAddItem)}>Add Item</button>
-			<AddItemForm refresh={refresh} onAddItem={onAddItem} />
+			<button id="add_item" onClick={() => setOnAddItem(!onAddItem)} style={{display: onAddItem ? "none" : ""}}>
+				Add Item
+			</button>
+			<AddItemForm refresh={refresh} onAddItem={onAddItem} resetOnAddItem={resetOnAddItem} />
 		</div>
 	)
 };

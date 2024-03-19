@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-function AddItemForm({ refresh, onAddItem }) {
+function AddItemForm({ refresh, onAddItem, resetOnAddItem }) {
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Must enter an item name"),
@@ -32,6 +32,7 @@ function AddItemForm({ refresh, onAddItem }) {
           refresh()
         }
       })
+      resetOnAddItem()
       resetForm()
     }
   })
@@ -83,7 +84,7 @@ function AddItemForm({ refresh, onAddItem }) {
       />
       <p style={{color: "red"}}>{formik.errors.shop_name}</p>
 
-      <button type="submit">Add</button>
+      <button type="submit">Submit</button>
     </form>
   )
 };

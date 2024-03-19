@@ -40,7 +40,7 @@ function AddShopForm({ refresh }) {
         onChange={formik.handleChange}
         value={formik.values.shop}
       />
-      <button type="submit">Add</button>
+      <button type="submit">+</button>
 
       <p style={{color: "red"}}>{formik.errors.shop}</p>
     </form>
