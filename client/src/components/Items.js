@@ -15,6 +15,7 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 	return (
 		<div className="items">
 			<h1>Shopping List</h1>
+
 			{shopsList.map(shop => {
 				const { id, name, items } = shop
 				return (
@@ -24,7 +25,7 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 							{items.map(item => {
 								const { id, name } = item
 								return (
-									<li key={id} onClick={() => console.log('clicked')}>
+									<li key={id}>
 										{name}
 										&nbsp;&nbsp;&nbsp;
 
@@ -34,7 +35,7 @@ function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 											✔️
 										</button>
 
-										<button id="edit_item" onClick={() => {setOnEditId(onEditId === null ? id : null); console.log(id) }} >
+										<button id="edit_item" onClick={() => {setOnEditId(onEditId === null ? id : null) }} >
 											✏️
 										</button>
 

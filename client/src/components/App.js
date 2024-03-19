@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import  Users from './Users'
 import  Shops from './Shops'
 import Items from './Items'
-import ItemInfo from './ItemInfo'
 
 function App() {
   const [usersList, setUsersList] = useState([]);
@@ -16,7 +15,6 @@ function App() {
   };
 
   //users
-  //move this down  to Login component later - refer Shops
   useEffect(() =>  {
     fetch('http://127.0.0.1:5555/users')
     .then(r => r.json())
@@ -78,9 +76,6 @@ function App() {
       <Switch>
         <Route exact path="/items">
           <Items shopsList={shopsList} isLoaded={isLoaded} clickHandler={onItemDelete} refresh={refresh}/>
-        </Route>
-        <Route path="/items/:itemId">
-          <ItemInfo />
         </Route>
         <Route path="/users">
           <Users usersList={usersList} isLoaded={isLoaded} clickHandler={onUserDelete} refresh={refresh} />
