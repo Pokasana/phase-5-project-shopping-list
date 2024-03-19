@@ -28,7 +28,7 @@ function AddItemForm({ refresh }) {
         body: JSON.stringify(values)
       })
       .then(r => {
-        if (r.status == 201) {
+        if (r.status === 201) {
           refresh()
         }
       })

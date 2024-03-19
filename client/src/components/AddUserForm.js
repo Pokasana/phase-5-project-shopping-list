@@ -22,7 +22,7 @@ function AddUserForm({ refresh }) {
         body: JSON.stringify(values.user, null, 2)
       })
       .then(r => {
-        if (r.status == 201) {
+        if (r.status === 201) {
           refresh();
         }
       })

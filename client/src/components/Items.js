@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AddItemForm from "./AddItemForm";
-import ItemInfo from "./ItemInfo";
 
 function Items({ shopsList, isLoaded, clickHandler, refresh}) {
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, useHistory, useRouteMatch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import  Users from './Users'
 import  Shops from './Shops'
 import Items from './Items'
@@ -10,8 +10,6 @@ function App() {
   const [isLoaded,  setIsLoaded] = useState(false);
 	const [shopsList, setShopsList] = useState([])
   const [refreshPage,  setRefreshPage] = useState(false)
-  const history = useHistory();
-  const match = useRouteMatch();
 
   function refresh() {
     setRefreshPage(!refreshPage)
@@ -74,11 +72,6 @@ function App() {
       }
 		});
 	};
-
-  function navigateItemEdit(id) {
-    history.push(`/items/${id}`)
-  };
-
 
   return (
     <div>

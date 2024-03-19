@@ -22,7 +22,7 @@ function AddShopForm({ refresh }) {
         body: JSON.stringify(values.shop)
       })
       .then(r => {
-        if (r.status == 201) {
+        if (r.status === 201) {
           refresh()
         }
       })
