@@ -29,13 +29,15 @@ function Items({ shopsList, usersList, isLoaded, refresh}) {
 		<div className="items">
 			<h1>Shopping List</h1>
 
-			<div id="sort_container">
-				<h4>Sort by:</h4><br/>
+			<div className="sort_container">
+				<h4>Sort by:</h4>
 
-				<select name="items" id="items" onChange={(e) => setFilterBy(e.target.value)}>
-					<option value="shops">Shops</option>
-					<option value="users">Users</option>
-				</select>
+				<div className="custom-select" style={{width: "200px"}}>
+					<select name="filter" id="filter" onChange={(e) => setFilterBy(e.target.value)}>
+						<option value="shops">Shops</option>
+						<option value="users">Users</option>
+					</select>
+				</div>
 			</div>
 
 			<div className="item_list_container">

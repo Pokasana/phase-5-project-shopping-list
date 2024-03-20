@@ -22,13 +22,13 @@ function ItemList ({ items, filterBy, filterElement, refresh, clickHandler }) {
 						{name}
 						&nbsp;&nbsp;&nbsp;
 
-						<button id="bought" onClick={() => {
+						<button className="emoji_button" onClick={() => {
 							clickHandler(id)
 							}}>
 							✔️
 						</button>
 
-						<button id="edit_item" onClick={() => {setOnEditId(onEditId === null ? id : null) }} >
+						<button className="emoji_button" onClick={() => {setOnEditId(onEditId === null ? id : null) }} >
 							✏️
 						</button>
 

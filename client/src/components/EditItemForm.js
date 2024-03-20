@@ -37,7 +37,7 @@ function EditItemForm ({ item, filterBy, filterElement, refresh, onEditId, reset
 	});
 
 	return (
-		<form className="edit_item" onSubmit={formik.handleSubmit} style={{display: onEditId === item.id ? "" : "none"}}>
+		<form className="edit_item_container" onSubmit={formik.handleSubmit} style={{display: onEditId === item.id ? "" : "none"}}>
 			<h3>Edit Item</h3>
 
 			<label htmlFor="name">Item Name</label><br/>
@@ -55,7 +55,7 @@ function EditItemForm ({ item, filterBy, filterElement, refresh, onEditId, reset
 				id="favorite"
 				name="favorite"
 				type="checkbox"
-				checked={item.favorite}
+				checked={formik.values.favorite}
 				onChange={formik.handleChange}
 				value={formik.values.favorite}
 			/>
