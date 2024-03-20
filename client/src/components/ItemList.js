@@ -11,9 +11,14 @@ function ItemList ({ items, filterBy, filterElement, refresh, clickHandler }) {
 	return (
 		<div id="item_list">
 			{items.map(item => {
-				const { id, name } = item
+				const { id, name, favorite } = item
+
 				return (
 					<li key={id}>
+						<span style={{visibility: favorite? "visible" : "hidden"}}>
+							★
+							&nbsp;
+						</span>
 						{name}
 						&nbsp;&nbsp;&nbsp;
 
