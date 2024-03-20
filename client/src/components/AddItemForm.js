@@ -85,6 +85,8 @@ function AddItemForm({ refresh, onAddItem, resetOnAddItem }) {
       <p style={{color: "red"}}>{formik.errors.shop_name}</p>
 
       <button type="submit">Submit</button>
+      &nbsp;&nbsp;&nbsp;
+      <button type="cancel" onClick={() => resetOnAddItem()}>Cancel</button>
     </form>
   )
 };
