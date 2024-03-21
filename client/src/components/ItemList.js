@@ -22,9 +22,12 @@ function ItemList ({ items, filterBy, filterElement, refresh, clickHandler }) {
 						{name}
 						&nbsp;&nbsp;&nbsp;
 
-						<button className="emoji_button" onClick={() => {
-							clickHandler(id)
-							}}>
+						<button
+							className="emoji_button"
+							onClick={() => {
+								clickHandler(id)
+							}}
+						>
 							✔️
 						</button>
 

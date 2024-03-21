@@ -19,9 +19,15 @@ function Users({usersList, isLoaded, clickHandler, refresh}) {
 							<li key={id}>
 								{name}
 								&nbsp;&nbsp;&nbsp;
-								<button onClick={() => {
-									clickHandler(id);
-								}}>x</button>
+								<button 
+									className="emoji_button"
+									style={{fontSize: "10px"}}
+									onClick={() => {
+										clickHandler(id);
+									}}
+								>
+								X
+								</button>
 							</li>
 						)
 					})}
