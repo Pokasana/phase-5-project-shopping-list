@@ -8,14 +8,20 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, User, Shop, Item
+from models import db, User, Shop, Item, users_shops
 
 if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
-        print("Starting seed...")
-
+        print('Drop tables')
+        db.session.query(users_shops).delete()
+        db.commit()
         User.query.delete()
+        Shop.query.delete()
+        Item.query.delete()
+
+        print("Start seeding...")
+
         users = []
         for i in range(3):
             users.append(User(name = fake.first_name()))
@@ -24,7 +30,6 @@ if __name__ == '__main__':
         db.session.commit()
         print("Users seeded")
 
-        Shop.query.delete()
         shops = []
         shops.append(Shop(name = 'Costco'))
         shops.append(Shop(name = 'Safeway'))
@@ -34,8 +39,6 @@ if __name__ == '__main__':
         db.session.add_all(shops)
         db.session.commit()
         print("Shops seeded")
-
-        Item.query.delete()
 
         items = []
 
