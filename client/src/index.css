@@ -9,7 +9,19 @@ body {
   font-family: 'Gill Sans', Tahoma, sans-serif;
 }
 
+#nav_bar {
+  background-color: #026773;
+  padding-bottom: 10px;
+}
+
+#nav_link {
+  margin-right: 10px;
+}
+
 h1 {
+  padding: auto;
+  margin-top: 0;
+  height: 80px;
   background-color: #F2E3D5;
   color:  #024959;
 }
@@ -65,16 +77,6 @@ button:hover {
   color: #F2E3D5;
 }
 
-#nav_bar {
-  background-color: #026773;
-  padding-bottom: 10px;
-  margin-bottom: 12px;
-}
-
-#nav_link {
-  margin-right: 10px;
-}
-
 a {
   color: #F2E3D5;
 }
@@ -82,21 +84,26 @@ a {
 .sort_container {
   padding: 5px;
   width: 100px;
-  background-color: #026773;
+  background-color: #3CA6A6;
 }
 
 .sort_container h4 {
   margin: 5px auto;
-  color: #F2E3D5;
+  color: #003b48;
 }
 
 select {
   position: relative;
   margin: 5px;
-  background-color: #F2E3D5;
-  color: #024959;
+  background-color: #FFF;
+  color: #015163;
   font-family: 'Gill Sans', Tahoma, sans-serif;
   font-size: 15px;
+}
+
+#filter {
+  border: 0.05em solid #F2E3D5;
+  border-radius: 0.2em;
 }
 
 .edit_item_container {
