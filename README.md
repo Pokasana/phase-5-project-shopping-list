@@ -22,7 +22,7 @@ Users can perform the following actions within the application:
 ---
 
 ## Directory Structure
-
+```bash
 .
 ├── CONTRIBUTING.md
 ├── LICENSE.md
@@ -46,6 +46,7 @@ Users can perform the following actions within the application:
     ├── node_modules
     └── seed.py
 
+```
 
 ---
 
