@@ -22,6 +22,7 @@ Users can perform the following actions within the application:
 ---
 
 ## Directory Structure
+
 .
 ├── CONTRIBUTING.md
 ├── LICENSE.md
