@@ -35,21 +35,7 @@ Users can perform the following actions within the application:
 │   ├── package.json
 │   ├── public
 │   └── src
-│       ├── components
-│       │   ├── AddItemForm.js
-│       │   ├── AddShopForm.js
-│       │   ├── AddUserForm.js
-│       │   ├── App.js
-│       │   ├── EditItemForm.js
-│       │   ├── ItemList.js
-│       │   ├── Items.js
-│       │   ├── ListByShops.js
-│       │   ├── ListByUsers.js
-│       │   ├── NavBar.js
-│       │   ├── Shops.js
-│       │   └── Users.js
-│       ├── index.css
-│       └── index.js
+├── image.png
 └── server
     ├── app.py
     ├── config.py
@@ -58,8 +44,6 @@ Users can perform the following actions within the application:
     ├── models.py
     ├── node_modules
     └── seed.py
-
-
 
 ---
 
