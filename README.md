@@ -64,6 +64,8 @@ These models are defined within the `models.py` file and maintain relationships 
 - Both **User** and **Shop** can have multiple associated **Items**.
 - The reciprocal relationship between **User** and **Shop** is managed through the `users_shops` join table, ensuring database-level data integrity.
 
+![alt text](image-1.png)
+
 ---
 
 ## Functionality
