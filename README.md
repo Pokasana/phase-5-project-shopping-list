@@ -46,6 +46,7 @@ Users can perform the following actions within the application:
     ├── node_modules
     └── seed.py
 
+
 ---
 
 ## Models and Relationships
