@@ -15,7 +15,7 @@ if __name__ == '__main__':
     with app.app_context():
         print('Drop tables')
         db.session.query(users_shops).delete()
-        db.commit()
+        db.session.commit()
         User.query.delete()
         Shop.query.delete()
         Item.query.delete()
