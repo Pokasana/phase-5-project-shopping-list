@@ -1,5 +1,5 @@
 import React from "react"
-import ItemList from "./ItemList"
+import ItemList from "../items/ItemList"
 
 function ListByShops ({ shopsList, filterBy, refresh, clickHandler }) {
 

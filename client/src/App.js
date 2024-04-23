@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import  Users from './Users'
-import  Shops from './Shops'
-import Items from './Items'
-import NavBar from './NavBar'
+import  Users from './features/users/Users'
+import  Shops from './features/shops/Shops'
+import Items from './features/items/Items'
+import NavBar from './components/NavBar'
 
 function App() {
   const [usersList, setUsersList] = useState([]);

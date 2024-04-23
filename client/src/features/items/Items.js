@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddItemForm from "./AddItemForm";
-import ListByShops from "./ListByShops";
-import ListByUsers from "./ListByUsers";
+import ListByShops from "../shops/ListByShops";
+import ListByUsers from "../users/ListByUsers";
 
 function Items({ shopsList, usersList, isLoaded, refresh}) {
 	const [onAddItem, setOnAddItem] = useState(false)
