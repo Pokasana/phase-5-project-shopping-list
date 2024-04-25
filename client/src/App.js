@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import  Users from './features/users/Users'
 import  Shops from './features/shops/Shops'
 import Items from './features/items/Items'
-import NavBar from './components/NavBar'
+import NavBar from './app/NavBar'
 
 function App() {
   const [usersList, setUsersList] = useState([]);
