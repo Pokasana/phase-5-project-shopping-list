@@ -22,6 +22,7 @@ class User(db.Model, SerializerMixin):
 
     items = db.relationship('Item', back_populates='user', cascade='all, delete-orphan')
     shops = db.relationship('Shop', secondary=users_shops, back_populates='users')
+    comments = db.relationship('Comment', back_populates='user', cascade='all, delete-orphan')
 
     def  __repr__(self):
         return f'User: {self.id} {self.name}'
@@ -52,6 +53,7 @@ class Item(db.Model, SerializerMixin):
 
     user = db.relationship('User', back_populates='items')
     shop = db.relationship('Shop', back_populates='items')
+    comments = db.relationship('Comment', back_populates='item', cascade='all, delete-orphan')
 
     def __repr__(self):
         return f'Item: {self.id} {self.name} {self.favorite}'

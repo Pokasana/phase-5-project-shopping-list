@@ -21,8 +21,8 @@ def upgrade():
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('content', sa.String(length=150), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('item_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('item_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], name=op.f('fk_comments_item_id_items')),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_comments_user_id_users')),
     sa.PrimaryKeyConstraint('id')
