@@ -55,3 +55,18 @@ class Item(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'Item: {self.id} {self.name} {self.favorite}'
+    
+class Comment(db.Model, SerializerMixin):
+    __tablename__ = 'comments'
+    serialize_rules = ('-user.comments', '-item.comments')
+    
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(150), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    item_id = db.Column(db.Integer, db.ForeignKey('items.id'))
+
+    user = db.relationship('User', back_populates='comments')
+    item = db.relationship('Item', back_populates='comments')
+
+    def __repr__(self):
+        return f'Comment: {self.content}'
