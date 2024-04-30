@@ -4,7 +4,7 @@ import AddUserForm from "./AddUserForm"
 import { useSelector } from 'react-redux'
 import { selectAllUsers } from './usersSlice'
 
-function Users({isLoaded, clickHandler, refresh}) {
+function Users({ clickHandler, refresh }) {
 
 	const users = useSelector(selectAllUsers)
 
@@ -27,8 +27,6 @@ function Users({isLoaded, clickHandler, refresh}) {
 			</li>
 		)
 	})
-
-	if (!isLoaded) return <h3>Loading...</h3>
 	
 	return (
 		<div className='users'>

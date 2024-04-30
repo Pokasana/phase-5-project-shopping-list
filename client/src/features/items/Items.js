@@ -3,7 +3,7 @@ import AddItemForm from "./AddItemForm";
 import ListByShops from "../shops/ListByShops";
 import ListByUsers from "../users/ListByUsers";
 
-function Items({ isLoaded, refresh}) {
+function Items({ refresh }) {
 	const [onAddItem, setOnAddItem] = useState(false)
 	const [filterBy, setFilterBy] = useState('shops')
 

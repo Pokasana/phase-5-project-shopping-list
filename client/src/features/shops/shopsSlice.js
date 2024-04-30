@@ -5,7 +5,6 @@ const initialState = []
 export const fetchShops = createAsyncThunk('users/fetchShops', async () => {
 	const response = await fetch('http://127.0.0.1:5555/shops')
 	const data = await response.json()
-	console.log(data)
 	return data
 })
 
@@ -15,7 +14,6 @@ const shopsSlice = createSlice({
 	reducers: {},
 	extraReducers(builder) {
 		builder.addCase(fetchShops.fulfilled, (state, action) => {
-			console.log(action.payload)
 			return action.payload
 		})
 	}

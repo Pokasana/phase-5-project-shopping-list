@@ -2,7 +2,12 @@ import React from "react";
 import { useFormik } from 'formik';
 import * as yup from "yup";
 
+import { useDispatch } from 'react-redux'
+import { addNewUser } from './usersSlice'
+
 function AddUserForm({ refresh }) {
+
+  const dispatch = useDispatch()
 
   const formSchema = yup.object().shape({
     user: yup.string().required("Must enter an user name")
@@ -14,18 +19,7 @@ function AddUserForm({ refresh }) {
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) =>  {
-      fetch("http://127.0.0.1:5555/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(values.user, null, 2)
-      })
-      .then(r => {
-        if (r.status === 201) {
-          refresh();
-        }
-      })
+      dispatch(addNewUser(values))
       resetForm();
     }
   })
