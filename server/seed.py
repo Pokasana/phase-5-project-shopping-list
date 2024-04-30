@@ -19,6 +19,7 @@ if __name__ == '__main__':
         User.query.delete()
         Shop.query.delete()
         Item.query.delete()
+        Comment.query.delete()
 
         print("Start seeding...")
 
@@ -68,7 +69,7 @@ if __name__ == '__main__':
         comments = []
 
         for i in range(6):
-            comments.append(Comment(content = fake.text(), user=users[{randint(1, 3)}]))
+            comments.append(Comment(content = fake.text(), user=users[{randint(1, 3)}], item=items[{randint(1, 10)}]))
 
         db.session.add_all(comments)
         db.session.commit()
