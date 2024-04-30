@@ -20,3 +20,6 @@ const commentsSlice = createSlice({
 })
 
 export default commentsSlice.reducer
+
+export const selectAllComments = state => state.comments
+export const selectCommentById = (state, commentId) => state.comments.find(comment => comment.id === commentId)

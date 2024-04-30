@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import EditItemForm from "./EditItemForm";
 
-
-
 function ItemList ({ items, filterBy, filterElement, refresh, clickHandler }) {
 	const [onEditId, setOnEditId] = useState(null)
 
@@ -13,7 +11,7 @@ function ItemList ({ items, filterBy, filterElement, refresh, clickHandler }) {
 	return (
 		<div id="item_list">
 			{items.map(item => {
-				const { id, name, favorite } = item
+				const { id, name, favorite, comments } = item
 
 				return (
 					<li key={id}>
