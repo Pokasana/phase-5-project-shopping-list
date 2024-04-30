@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, User, Shop, Item, users_shops
+from models import db, User, Shop, Item, Comment, users_shops
 
 if __name__ == '__main__':
     fake = Faker()
@@ -64,3 +64,12 @@ if __name__ == '__main__':
         db.session.add_all(items)
         db.session.commit()
         print("Items seeded")
+
+        comments = []
+
+        for i in range(6):
+            comments.append(Comment(content = fake.text(), user=users[{randint(1, 3)}]))
+
+        db.session.add_all(comments)
+        db.session.commit()
+        print("Comments seeded")
