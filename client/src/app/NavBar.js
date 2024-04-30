@@ -5,7 +5,7 @@ function NavBar() {
   return (
     <div id="nav_bar">
       <NavLink id="nav_link" to='/items'>
-        Home
+        Items
       </NavLink>
       <NavLink id="nav_link" to='/users'>
         Users
