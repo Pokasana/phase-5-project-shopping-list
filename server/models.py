@@ -15,7 +15,7 @@ users_shops = db.Table(
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
-    serialize_rules = ('-items.user',)
+    serialize_rules = ('-item.user', '-comment.user','-item.comments', '-item.shop')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
@@ -29,7 +29,7 @@ class User(db.Model, SerializerMixin):
     
 class Shop(db.Model, SerializerMixin):
     __tablename__ = 'shops'
-    serialize_rules = ('-items.shop',)
+    serialize_rules = ('-item.shop', '-item.user', '-item.comments')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -43,7 +43,7 @@ class Shop(db.Model, SerializerMixin):
     
 class Item(db.Model, SerializerMixin):
     __tablename__ = 'items'
-    serialize_rules = ('-user.items','-shop.items')
+    serialize_rules = ('-user.items','-shop.items', '-comment.item', '-user.comments', '-comment.user')
 
     id = db.Column(db.Integer, primary_key=True)
     name =db.Column(db.String, unique=True, nullable=False)
@@ -60,7 +60,7 @@ class Item(db.Model, SerializerMixin):
     
 class Comment(db.Model, SerializerMixin):
     __tablename__ = 'comments'
-    serialize_rules = ('-user.comments', '-item.comments')
+    serialize_rules = ('-user.comments', '-item.comments', '-user.items', '-item.user', '-item.shop')
     
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(150), nullable=False)
