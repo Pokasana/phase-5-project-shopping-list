@@ -4,7 +4,7 @@ import AddUserForm from "./AddUserForm"
 import { useDispatch, useSelector } from 'react-redux'
 import { selectAllUsers, deleteUser } from './usersSlice'
 
-function Users({ clickHandler, refresh }) {
+function Users() {
 	const dispatch = useDispatch()
 
 	const users = useSelector(selectAllUsers)
@@ -40,7 +40,7 @@ function Users({ clickHandler, refresh }) {
 				</ul>
 			</div>
 
-	<AddUserForm refresh={refresh}/>
+	<AddUserForm />
 	
 		</div>
 	)

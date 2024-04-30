@@ -49,7 +49,7 @@ function App() {
           <Items isLoaded={isLoaded} refresh={refresh}/>
         </Route>
         <Route path="/users">
-          <Users isLoaded={isLoaded} clickHandler={onUserDelete} refresh={refresh} />
+          <Users />
         </Route>
         <Route path="/shops">
           <Shops isLoaded={isLoaded} clickHandler={onShopDelete} refresh={refresh}/>
