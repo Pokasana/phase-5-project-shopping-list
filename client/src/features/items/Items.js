@@ -3,11 +3,9 @@ import AddItemForm from "./AddItemForm";
 import ListByShops from "../shops/ListByShops";
 import ListByUsers from "../users/ListByUsers";
 
-function Items({ shopsList, isLoaded, refresh}) {
+function Items({ isLoaded, refresh}) {
 	const [onAddItem, setOnAddItem] = useState(false)
 	const [filterBy, setFilterBy] = useState('shops')
-
-  if (!isLoaded) return <h3>Loading...</h3>
 
 	function onItemDelete(id) {
 		fetch(`http://127.0.0.1:5555/items/${id}`, {
@@ -43,7 +41,7 @@ function Items({ shopsList, isLoaded, refresh}) {
 			<div className="item_list_container">
 				{
 					filterBy === "shops"
-					? <ListByShops shopsList={shopsList} filterBy={filterBy} refresh={refresh} clickHandler={onItemDelete} />
+					? <ListByShops filterBy={filterBy} refresh={refresh} clickHandler={onItemDelete} />
 					: <ListByUsers filterBy={filterBy} refresh={refresh} clickHandler={onItemDelete} />
 				}
 

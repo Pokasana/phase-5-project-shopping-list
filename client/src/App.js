@@ -7,7 +7,6 @@ import NavBar from './app/NavBar'
 
 function App() {
   const [isLoaded,  setIsLoaded] = useState(false);
-	const [shopsList, setShopsList] = useState([])
   const [refreshPage,  setRefreshPage] = useState(false)
 
   function refresh() {
@@ -27,16 +26,7 @@ function App() {
 		})
 	};
 
-  //shops
-	useEffect(() => {
-    fetch('http://127.0.0.1:5555/shops')
-    .then(r => r.json())
-    .then(data => {
-      setShopsList(data);
-      setIsLoaded(true);
-    })
-    }, [refreshPage])
-  
+  //shops  
 	function onShopDelete(id) {
 		fetch(`http://127.0.0.1:5555/shops/${id}`, {
 			method: "DELETE",
@@ -56,13 +46,13 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/items">
-          <Items shopsList={shopsList} isLoaded={isLoaded} refresh={refresh}/>
+          <Items isLoaded={isLoaded} refresh={refresh}/>
         </Route>
         <Route path="/users">
           <Users isLoaded={isLoaded} clickHandler={onUserDelete} refresh={refresh} />
         </Route>
         <Route path="/shops">
-          <Shops shopsList={shopsList} isLoaded={isLoaded} clickHandler={onShopDelete} refresh={refresh}/>
+          <Shops isLoaded={isLoaded} clickHandler={onShopDelete} refresh={refresh}/>
         </Route>
       </Switch>
     </div>

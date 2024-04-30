@@ -1,9 +1,31 @@
 import React from "react";
 import AddShopForm from "./AddShopForm"
 
-function Shops({ shopsList, clickHandler, isLoaded, refresh }) {
+import { useSelector } from 'react-redux'
+import { selectAllShops } from './shopsSlice'
 
-  if (!isLoaded) return <h3>Loading...</h3>
+function Shops({ clickHandler, isLoaded, refresh }) {
+
+	const new_shops = useSelector(selectAllShops)
+
+	const renderedShops = new_shops.map(shop => {
+		const {id, name} = shop
+		return (
+			<li key={id}>
+				{name}
+				&nbsp;&nbsp;
+				<button
+					className="emoji_button"
+					style={{fontSize: "10px"}}
+					onClick={() => {
+						clickHandler(id);
+					}}
+				>
+					X
+				</button>
+			</li>
+		)
+	})
 
 	return (
 		<div className="shops">
@@ -11,24 +33,7 @@ function Shops({ shopsList, clickHandler, isLoaded, refresh }) {
 
 			<h3>Shop List</h3>
 			<ul>
-				{shopsList.map(shop => {
-					const {id, name} = shop
-					return (
-						<li key={id}>
-							{name}
-							&nbsp;&nbsp;
-							<button
-								className="emoji_button"
-								style={{fontSize: "10px"}}
-								onClick={() => {
-									clickHandler(id);
-								}}
-							>
-								X
-							</button>
-						</li>
-					)
-				})}
+				{renderedShops}
 			</ul>
 
 			<AddShopForm refresh={refresh} />

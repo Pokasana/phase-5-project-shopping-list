@@ -4,7 +4,7 @@ import AddUserForm from "./AddUserForm"
 import { useSelector } from 'react-redux'
 import { selectAllUsers } from './usersSlice'
 
-function Users({usersList, isLoaded, clickHandler, refresh}) {
+function Users({isLoaded, clickHandler, refresh}) {
 
 	const users = useSelector(selectAllUsers)
 

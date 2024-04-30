@@ -1,11 +1,15 @@
 import React from "react"
 import ItemList from "../items/ItemList"
 
-function ListByShops ({ shopsList, filterBy, refresh, clickHandler }) {
+import { useSelector } from 'react-redux'
+import { selectAllShops } from './shopsSlice'
+
+function ListByShops ({ filterBy, refresh, clickHandler }) {
+	const shops = useSelector(selectAllShops)
 
 	return (
 		<div>
-			{shopsList.map(shop => {
+			{shops.map(shop => {
 				const { id, name, items } = shop
 				return (
 					<div key={id}>
