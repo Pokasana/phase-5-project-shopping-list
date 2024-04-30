@@ -3,7 +3,7 @@ import AddItemForm from "./AddItemForm";
 import ListByShops from "../shops/ListByShops";
 import ListByUsers from "../users/ListByUsers";
 
-function Items({ shopsList, usersList, isLoaded, refresh}) {
+function Items({ shopsList, isLoaded, refresh}) {
 	const [onAddItem, setOnAddItem] = useState(false)
 	const [filterBy, setFilterBy] = useState('shops')
 
@@ -44,7 +44,7 @@ function Items({ shopsList, usersList, isLoaded, refresh}) {
 				{
 					filterBy === "shops"
 					? <ListByShops shopsList={shopsList} filterBy={filterBy} refresh={refresh} clickHandler={onItemDelete} />
-					: <ListByUsers usersList={usersList} filterBy={filterBy} refresh={refresh} clickHandler={onItemDelete} />
+					: <ListByUsers filterBy={filterBy} refresh={refresh} clickHandler={onItemDelete} />
 				}
 
 			</div>
