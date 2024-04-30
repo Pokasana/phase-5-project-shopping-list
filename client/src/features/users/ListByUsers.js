@@ -1,11 +1,15 @@
 import React from "react"
 import ItemList from "../items/ItemList"
 
-function ListByUsers ({ usersList, filterBy, refresh, clickHandler }) {
+import { useSelector } from 'react-redux'
+import { selectAllUsers } from './usersSlice'
+
+function ListByUsers ({ filterBy, refresh, clickHandler }) {
+	const users = useSelector(selectAllUsers)
 
 	return (
 		<div>
-			{usersList.map(user => {
+			{users.map(user => {
 				const { id, name, items } = user
 				return (
 					<div key={id}>
