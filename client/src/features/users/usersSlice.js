@@ -19,7 +19,17 @@ export const addNewUser = createAsyncThunk(
 			body: JSON.stringify(values.user, null, 2)
 		})
 		const data = await response.json()
-		console.log(data)
+		return data
+	}
+)
+
+export const deleteUser = createAsyncThunk(
+	'users/deleteUser',
+	async (id) => {
+		const response = await fetch(`http://127.0.0.1:5555/users/${id}`, {
+			method: "DELETE",
+		})
+		const data = await response.json()
 		return data
 	}
 )
@@ -34,6 +44,9 @@ const usersSlice = createSlice({
 		})
 		builder.addCase(addNewUser.fulfilled, (state, action) => {
 			return state.concat(action.payload)
+		})
+		builder.addCase(deleteUser.fulfilled, (state, action) => {
+			return state.filter(user => user.id !== action.payload.userId)
 		})
 	}
 })

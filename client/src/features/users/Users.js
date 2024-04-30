@@ -1,10 +1,11 @@
 import React from "react";
 import AddUserForm from "./AddUserForm"
 
-import { useSelector } from 'react-redux'
-import { selectAllUsers } from './usersSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAllUsers, deleteUser } from './usersSlice'
 
 function Users({ clickHandler, refresh }) {
+	const dispatch = useDispatch()
 
 	const users = useSelector(selectAllUsers)
 
@@ -19,7 +20,7 @@ function Users({ clickHandler, refresh }) {
 					className="emoji_button"
 					style={{fontSize: "10px"}}
 					onClick={() => {
-						clickHandler(id);
+						dispatch(deleteUser(id));
 					}}
 				>
 				X

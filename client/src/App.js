@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import  Users from './features/users/Users'
 import  Shops from './features/shops/Shops'
