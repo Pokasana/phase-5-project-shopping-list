@@ -4,6 +4,7 @@ import  Users from './features/users/Users'
 import  Shops from './features/shops/Shops'
 import Items from './features/items/Items'
 import SingleItemPage from './features/items/SingleItemPage'
+import LoginPage from './features/login/LoginPage'
 import NavBar from './app/NavBar'
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
     <div>
       <NavBar />
       <Switch>
+        <Route exact path="/">
+          <LoginPage/>
+        </Route>
         <Route exact path="/items">
           <Items isLoaded={isLoaded} refresh={refresh}/>
         </Route>
