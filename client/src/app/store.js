@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import itemsReducer from '../features/items/itemsSlice'
 import usersReducer from '../features/users/usersSlice'
 import shopsReducer from '../features/shops/shopsSlice'
-import commentsReducer from '../fatures/comments/commentsSlice'
+import commentsReducer from '../features/comments/commentsSlice'
 
 export const store = configureStore({
     reducer: {

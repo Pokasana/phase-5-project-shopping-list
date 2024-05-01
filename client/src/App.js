@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import  Users from './features/users/Users'
 import  Shops from './features/shops/Shops'
 import Items from './features/items/Items'
+import SingleItemPage from './features/items/SingleItemPage'
 import NavBar from './app/NavBar'
 
 function App() {
@@ -40,13 +41,15 @@ function App() {
 	};
 
   //Items
-
   return (
     <div>
       <NavBar />
       <Switch>
         <Route exact path="/items">
           <Items isLoaded={isLoaded} refresh={refresh}/>
+        </Route>
+        <Route exact path="/items/:itemId">
+          <SingleItemPage/>
         </Route>
         <Route path="/users">
           <Users />
