@@ -162,3 +162,16 @@ input[type="checkbox"]:checked::before {
   transform: scale(0.8);
 }
 
+.comments_container {
+  width:500px;
+  padding: 10px;
+  margin: 5px;
+  background-color: #FFFFFF;
+}
+
+.item_card {
+  width:500px;
+  padding: 10px;
+  margin: 5px;
+  background-color: #FFFFFF;
+}
