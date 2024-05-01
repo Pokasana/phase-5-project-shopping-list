@@ -36,7 +36,7 @@ function AddItemForm({ onAddItem, resetOnAddItem }) {
   })
 
   return (
-    <form className="add_item_container" onSubmit={formik.handleSubmit} style={{display: onAddItem ? "" : "none"}}>
+    <form className="add_item_container" id="additemform"  onSubmit={formik.handleSubmit} style={{display: onAddItem ? "" : "none"}}>
       <h3>Add a new Item</h3>
 
       <label htmlFor="name">Item Name</label><br/>

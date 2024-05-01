@@ -14,19 +14,6 @@ function App() {
     setRefreshPage(!refreshPage)
   };
 
-  //users
-  function onUserDelete(id) {
-		fetch(`http://127.0.0.1:5555/users/${id}`, {
-			method: "DELETE",
-		})
-		.then(r => r.json())
-		.then((res) => {
-      if (res.delete_successful === true) {
-        refresh()
-      }
-		})
-	};
-
   //shops  
 	function onShopDelete(id) {
 		fetch(`http://127.0.0.1:5555/shops/${id}`, {
