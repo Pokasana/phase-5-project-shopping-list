@@ -41,8 +41,8 @@ function Items({ refresh }) {
 			<div className="item_list_container">
 				{
 					filterBy === "shops"
-					? <ListByShops filterBy={filterBy} refresh={refresh} clickHandler={onItemDelete} />
-					: <ListByUsers filterBy={filterBy} refresh={refresh} clickHandler={onItemDelete} />
+					? <ListByShops filterBy={filterBy} clickHandler={onItemDelete} />
+					: <ListByUsers filterBy={filterBy} clickHandler={onItemDelete} />
 				}
 
 			</div>

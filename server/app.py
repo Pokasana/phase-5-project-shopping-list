@@ -9,15 +9,15 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import User, Shop, Item
+from models import User, Shop, Item, Comment
 
 # Views go here!
 class Users(Resource):
     def get(self):
-        response_dict_list = [user.to_dict() for user in User.query.all()]
+        users_dict = [user.to_dict() for user in User.query.all()]
 
         response = make_response(
-            response_dict_list,
+            users_dict,
             200
         )
 
@@ -41,10 +41,10 @@ class Users(Resource):
     
 class UserById(Resource):
     def get(self, id):
-        response_dict = User.query.filter_by(id=id).first()
+        user_dict = User.query.filter_by(id=id).first().to_dict()
 
         response = make_response(
-            response_dict,
+            user_dict,
             200
         )
 
@@ -60,10 +60,10 @@ class UserById(Resource):
 class Shops(Resource):
     def get(self):
 
-        response_dict = [shop.to_dict() for shop in Shop.query.all()]
+        shops_dict = [shop.to_dict() for shop in Shop.query.all()]
 
         response = make_response(
-            response_dict,
+            shops_dict,
             200
         )
 
@@ -87,10 +87,10 @@ class Shops(Resource):
 
 class ShopById(Resource):
     def get(self, id):
-        shop = Shop.query.filter_by(id=id).first()
+        shop_dict = Shop.query.filter_by(id=id).first().to_dict()
 
         response = make_response(
-            shop.to_dict(),
+            shop_dict,
             200
         )
 
@@ -105,10 +105,10 @@ class ShopById(Resource):
     
 class Items(Resource):
     def get(self):
-        response_dict = [item.to_dict() for item in Item.query.all()]
+        items_dict = [item.to_dict() for item in Item.query.all()]
 
         response = make_response(
-            response_dict,
+            items_dict,
             200
         )
 
@@ -136,10 +136,10 @@ class Items(Resource):
     
 class ItemById(Resource):
     def get(self, id):
-        item = Item.query.filter_by(id=id).first()
+        item_dict = Item.query.filter_by(id=id).first().to_dict()
 
         response = make_response(
-            item.to_dict(),
+            item_dict,
             200
         )
 
@@ -148,18 +148,14 @@ class ItemById(Resource):
     def patch(self, id):
 
         item = Item.query.filter_by(id=id).first()
-        print(item)
 
         request_json = request.get_json()
-        print(request_json)
 
         item.name = request_json["name"]
         item.favorite = request_json["favorite"]
         item.user_id = User.query.filter(User.name == request_json["user_name"]).first().id
         item.shop_id = Shop.query.filter(Shop.name == request_json["shop_name"]).first().id
         
-        print(item)
-
         db.session.add(item)
         db.session.commit()
 
@@ -177,6 +173,17 @@ class ItemById(Resource):
         db.session.commit()
 
         return {"delete_successful": True, "message": "Item deleted."}
+    
+class Comments(Resource):
+    def get(self):
+        comments_dict = [comment.to_dict() for comment in Comment.query.all()]
+
+        response = make_response(
+            comments_dict,
+            200
+        )
+
+        return response
 
 api.add_resource(Users, '/users')
 api.add_resource(UserById, '/users/<int:id>')
@@ -184,6 +191,7 @@ api.add_resource(Shops, '/shops')
 api.add_resource(ShopById, '/shops/<int:id>')
 api.add_resource(Items, '/items')
 api.add_resource(ItemById, '/items/<int:id>')
+api.add_resource(Comments, '/comments')
 
 @app.route('/')
 def index():

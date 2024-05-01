@@ -15,7 +15,7 @@ function ListByUsers ({ filterBy, refresh, clickHandler }) {
 					<div key={id}>
 						<h4>{name}</h4>
 						<ul>
-							<ItemList items={items} filterBy={filterBy} filterElement={user} refresh={refresh} clickHandler={clickHandler} />
+							<ItemList items={items} filterBy={filterBy} filterElement={user} clickHandler={clickHandler} />
 						</ul>
 					</div>
 				)

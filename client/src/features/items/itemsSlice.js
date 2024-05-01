@@ -28,6 +28,10 @@ const itemsSlice = createSlice({
 		builder.addCase(fetchItems.fulfilled, (state, action) => {
 			return action.payload
 		})
+		builder.addCase(addNewItem.fulfilled, (state, action) => {
+			console.log(action.payload)
+			return state.concat(action.payload)
+		})
 	}
 })
 

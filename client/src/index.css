@@ -127,6 +127,10 @@ label {
 input {
   border: 0.05em solid #024959;
   border-radius: 0.3em;
+  color: #024959;
+}
+
+input::placeholder {
   color: gray;
 }
 
@@ -174,4 +178,15 @@ input[type="checkbox"]:checked::before {
   padding: 10px;
   margin: 5px;
   background-color: #FFFFFF;
+}
+
+.add_item_container select {
+  position: relative;
+  margin: 5px;
+  background-color: #FFF;
+  color: gray;
+  font-family: 'Gill Sans', Tahoma, sans-serif;
+  font-size: 15px;
+  border: 0.05em solid #F2E3D5;
+  border-radius: 0.2em;
 }

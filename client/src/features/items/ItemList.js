@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import EditItemForm from "./EditItemForm";
 
-function ItemList ({ items, filterBy, filterElement, refresh, clickHandler }) {
+function ItemList ({ items, filterBy, filterElement, clickHandler }) {
 	const [onEditId, setOnEditId] = useState(null)
 
 	function resetEditId() {
@@ -40,7 +40,7 @@ function ItemList ({ items, filterBy, filterElement, refresh, clickHandler }) {
 
 						{comments.length ? (<Link to={`/items/${id}`}>Comments</Link>) : null}
 
-						<EditItemForm item={item} filterBy={filterBy} filterElement={filterElement} refresh={refresh} onEditId={onEditId} resetEditId={resetEditId}/>
+						<EditItemForm item={item} filterBy={filterBy} filterElement={filterElement} onEditId={onEditId} resetEditId={resetEditId}/>
 					</li>
 				)
 			})}

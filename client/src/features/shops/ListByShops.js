@@ -4,7 +4,7 @@ import ItemList from "../items/ItemList"
 import { useSelector } from 'react-redux'
 import { selectAllShops } from './shopsSlice'
 
-function ListByShops ({ filterBy, refresh, clickHandler }) {
+function ListByShops ({ filterBy, clickHandler }) {
 	const shops = useSelector(selectAllShops)
 
 	return (
@@ -15,7 +15,7 @@ function ListByShops ({ filterBy, refresh, clickHandler }) {
 					<div key={id}>
 						<h4>{name}</h4>
 						<ul>
-							<ItemList items={items} filterBy={filterBy} filterElement={shop} refresh={refresh} clickHandler={clickHandler} />
+							<ItemList items={items} filterBy={filterBy} filterElement={shop} clickHandler={clickHandler} />
 						</ul>
 					</div>
 				)

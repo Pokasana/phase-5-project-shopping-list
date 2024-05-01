@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-function EditItemForm ({ item, filterBy, filterElement, refresh, onEditId, resetEditId }) {
+function EditItemForm ({ item, filterBy, filterElement, onEditId, resetEditId }) {
 
 	const formSchema = yup.object().shape({
 		name: yup.string(),
@@ -29,7 +29,6 @@ function EditItemForm ({ item, filterBy, filterElement, refresh, onEditId, reset
 			})
 			.then(r => {
 				if (r.status === 200) {
-					refresh();
 					resetEditId();
 				}
 			})
