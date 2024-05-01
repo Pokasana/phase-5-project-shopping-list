@@ -101,7 +101,7 @@ class ShopById(Resource):
         db.session.delete(shop)
         db.session.commit()
 
-        return {"delete_successful": True, "message": "Shop deleted."}
+        return {"delete_successful": True, "message": "Shop deleted.", "shopId": id}
     
 class Items(Resource):
     def get(self):

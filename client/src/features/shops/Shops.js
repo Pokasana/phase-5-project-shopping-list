@@ -1,10 +1,11 @@
 import React from "react";
 import AddShopForm from "./AddShopForm"
 
-import { useSelector } from 'react-redux'
-import { selectAllShops } from './shopsSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAllShops, deleteShop } from './shopsSlice'
 
-function Shops({ clickHandler, isLoaded, refresh }) {
+function Shops() {
+	const dispatch = useDispatch()
 
 	const new_shops = useSelector(selectAllShops)
 
@@ -18,7 +19,7 @@ function Shops({ clickHandler, isLoaded, refresh }) {
 					className="emoji_button"
 					style={{fontSize: "10px"}}
 					onClick={() => {
-						clickHandler(id);
+						dispatch(deleteShop(id));
 					}}
 				>
 					X
@@ -36,7 +37,7 @@ function Shops({ clickHandler, isLoaded, refresh }) {
 				{renderedShops}
 			</ul>
 
-			<AddShopForm refresh={refresh} />
+			<AddShopForm />
 
 		</div>
 	)
