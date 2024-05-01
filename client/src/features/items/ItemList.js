@@ -13,7 +13,6 @@ function ItemList ({ items, filterBy, filterElement, refresh, clickHandler }) {
 		<div id="item_list">
 			{items.map(item => {
 				const { id, name, favorite, comments } = item
-				console.log(comments.length)
 
 				return (
 					<li key={id}>

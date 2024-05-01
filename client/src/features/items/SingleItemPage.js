@@ -9,7 +9,6 @@ function SingleItemPage () {
 	const { itemId } = useParams()
 	
 	const item = useSelector(state => selectItemById(state, Number(itemId)))
-	console.log(item)
 
 	const item_card = item => {
 		return (
