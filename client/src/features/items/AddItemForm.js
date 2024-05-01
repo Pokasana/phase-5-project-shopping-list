@@ -2,7 +2,12 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
+import { useDispatch } from 'react-redux'
+import { addNewItem } from './itemsSlice'
+
 function AddItemForm({ refresh, onAddItem, resetOnAddItem }) {
+
+  const dispatch = useDispatch()
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Must enter an item name"),
@@ -20,20 +25,8 @@ function AddItemForm({ refresh, onAddItem, resetOnAddItem }) {
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) => {
-      fetch("http://127.0.0.1:5555/items", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(values)
-      })
-      .then(r => {
-        if (r.status === 201) {
-          refresh()
-        }
-      })
-      resetOnAddItem()
-      resetForm()
+        dispatch(addNewItem(values))
+        resetForm();
     }
   })
 

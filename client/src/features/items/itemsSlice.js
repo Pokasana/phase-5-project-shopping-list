@@ -8,6 +8,18 @@ export const fetchItems =  createAsyncThunk('items/fetchItems', async () => {
 	return data
 })
 
+export const addNewItem = createAsyncThunk('items/addItem', async (values) => {
+	const response = await fetch('http://127.0.0.1:5555/items', {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(values)
+	})
+	const data = await response.json()
+	return data
+})
+
 const itemsSlice = createSlice({
 	name: 'items',
 	initialState,
