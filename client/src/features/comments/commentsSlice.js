@@ -8,6 +8,19 @@ export const fetchComments = createAsyncThunk('comments/fetchComments', async ()
 	return data
 })
 
+export const addNewComment = createAsyncThunk('items/addNewComment', async (values) => {
+	const response = await fetch('http://127.0.0.1:5555/comments', {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(values)
+	})
+	const data = await response.json()
+	return data
+})
+
+
 const commentsSlice = createSlice({
 	name: 'comments',
 	initialState,
@@ -15,6 +28,9 @@ const commentsSlice = createSlice({
 	extraReducers(builder) {
 		builder.addCase(fetchComments.fulfilled, (state, action) => {
 			return action.payload
+		})
+		builder.addCase(addNewComment.fulfilled, (state, action) => {
+			return state.concat(action.payload)
 		})
 	}
 })

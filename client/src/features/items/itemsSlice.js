@@ -2,13 +2,17 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 const initialState = []
 
-export const fetchItems =  createAsyncThunk('items/fetchItems', async () => {
+export const fetchItems =  createAsyncThunk(
+	'items/fetchItems',
+	async () => {
   const response = await fetch('http://127.0.0.1:5555/items')
 	const data = await response.json()
 	return data
 })
 
-export const addNewItem = createAsyncThunk('items/addItem', async (values) => {
+export const addNewItem = createAsyncThunk(
+	'items/addNewItem',
+	async (values) => {
 	const response = await fetch('http://127.0.0.1:5555/items', {
 		method: "POST",
 		headers: {
@@ -20,6 +24,17 @@ export const addNewItem = createAsyncThunk('items/addItem', async (values) => {
 	return data
 })
 
+export const deleteItem = createAsyncThunk(
+	'items/deleteItem',
+	async (id) => {
+		const response = await fetch(`http://127.0.0.1:5555/items/${id}`, {
+			method: "DELETE",
+		})
+		const data = await response.json()
+		return data
+	}
+)
+
 const itemsSlice = createSlice({
 	name: 'items',
 	initialState,
@@ -29,8 +44,10 @@ const itemsSlice = createSlice({
 			return action.payload
 		})
 		builder.addCase(addNewItem.fulfilled, (state, action) => {
-			console.log(action.payload)
 			return state.concat(action.payload)
+		})
+		builder.addCase(deleteItem.fulfilled, (state, action) => {
+			return state.filter(item => item.id !== action.payload.itemId)
 		})
 	}
 })

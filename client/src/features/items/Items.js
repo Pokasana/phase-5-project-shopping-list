@@ -46,7 +46,7 @@ function Items({ refresh }) {
 				}
 
 			</div>
-
+ 
 			<button id="add_item" onClick={() => setOnAddItem(!onAddItem)} style={{display: onAddItem ? "none" : ""}}>
 				Add Item
 			</button>

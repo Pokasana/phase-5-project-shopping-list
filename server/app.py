@@ -172,7 +172,7 @@ class ItemById(Resource):
         db.session.delete(item)
         db.session.commit()
 
-        return {"delete_successful": True, "message": "Item deleted."}
+        return {"delete_successful": True, "message": "Item deleted.", "itemId": id}
     
 class Comments(Resource):
     def get(self):
@@ -184,6 +184,34 @@ class Comments(Resource):
         )
 
         return response
+    
+    def post(self):
+        request_json = request.get_json()
+
+        new_comment =  Comment(
+            content = request_json["name"],
+            user_id = request_json["userId"],
+            item_id = request_json["itemId"]
+        )
+
+        db.session.add(new_comment)
+        db.session.commit()
+
+        response  = make_response(
+            new_comment.to_dict(),
+            201
+        )
+
+        return response
+    
+class CommentById(Resource):
+    def delete(self, id):
+        comment = Comment.query.filter_by(id=id).first()
+
+        db.session.delete(comment)
+        db.session.commit()
+
+        return {"delete_successful": True, "message": "Comment deleted.", "commentId": id}
     
 class Login(Resource):
     def get(self):

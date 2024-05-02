@@ -31,7 +31,7 @@ function App() {
         <Route exact path="/login" component={LoginPage}/>
 
         <Route exact path="/items">
-          <Items />
+          <PrivateRoute component={Items}/>
         </Route>
         <Route exact path="/items/:itemId">
           <PrivateRoute component={SingleItemPage}/>
