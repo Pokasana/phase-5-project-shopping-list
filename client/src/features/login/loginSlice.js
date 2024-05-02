@@ -46,7 +46,7 @@ const loginSlice = createSlice({
 			return action.payload
 		})
 		builder.addCase(loggedOut.fulfilled, (state, action) => {
-			return {}
+			return {...state, name: "", id: null}
 		})
 		builder.addCase(checkAuth.fulfilled, (state, action) => {
 			console.log(action.payload)

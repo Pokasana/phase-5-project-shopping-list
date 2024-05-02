@@ -38,9 +38,9 @@ function LoginPage({ message }) {
 
 			<p style={{color: "red"}}>{message}</p>
 			
-			<h3>Please select a user</h3>
+			<h3>Please login!</h3>
 			<select id="login" name="login" onChange={onUserChosen}>
-				<option value=""></option>
+				<option value="">- select user -</option>
 				{users.map(user => <option key={user.id} value={JSON.stringify(user)}>{user.name}</option>)}
 			</select>
 			&nbsp;

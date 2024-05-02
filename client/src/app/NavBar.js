@@ -13,9 +13,6 @@ function NavBar() {
       <NavLink id="nav_link" to='/shops'>
         Shops
       </NavLink>
-      <NavLink id="nav_link" to='/login'>
-        Login
-      </NavLink>
     </div>
   );
 };

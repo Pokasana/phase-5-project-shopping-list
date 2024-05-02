@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import React from "react";
+import { Switch, Route, useLocation } from "react-router-dom";
 import  Users from './features/users/Users'
 import  Shops from './features/shops/Shops'
 import Items from './features/items/Items'
@@ -15,11 +15,14 @@ import { selectLoggedInUser } from './features/login/loginSlice'
 function App() {
   const currentUser = useSelector(selectLoggedInUser)
 
+  const location = useLocation()
+
   return (
     <div>
       <NavBar />
 
-      {Object.keys(currentUser).length > 0
+      {
+        Object.keys(currentUser).length > 0 && location.pathname !== "/login"
         ? <AuthBox />
         : null
       }
