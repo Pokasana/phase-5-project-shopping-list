@@ -15,20 +15,6 @@ function App() {
     setRefreshPage(!refreshPage)
   };
 
-  //shops  
-	function onShopDelete(id) {
-		fetch(`http://127.0.0.1:5555/shops/${id}`, {
-			method: "DELETE",
-		})
-		.then(r => r.json())
-		.then((res) => {
-      if (res.delete_successful === true) {
-        refresh()
-      }
-		})
-	};
-
-  //Items
   return (
     <div>
       <NavBar />
@@ -46,7 +32,7 @@ function App() {
           <Users />
         </Route>
         <Route path="/shops">
-          <Shops isLoaded={isLoaded} clickHandler={onShopDelete} refresh={refresh}/>
+          <Shops />
         </Route>
       </Switch>
     </div>

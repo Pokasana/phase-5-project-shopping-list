@@ -3,9 +3,16 @@ import AddItemForm from "./AddItemForm";
 import ListByShops from "../shops/ListByShops";
 import ListByUsers from "../users/ListByUsers";
 
+import { useSelector } from 'react-redux'
+import { selectLoggedInUser } from '../login/loginSlice'
+
 function Items({ refresh }) {
 	const [onAddItem, setOnAddItem] = useState(false)
 	const [filterBy, setFilterBy] = useState('shops')
+
+	const loggedInUser = useSelector(selectLoggedInUser)
+
+	console.log(useSelector(state => state.login))
 
 	function onItemDelete(id) {
 		fetch(`http://127.0.0.1:5555/items/${id}`, {
@@ -26,6 +33,8 @@ function Items({ refresh }) {
 	return (
 		<div className="items">
 			<h1>Shopping List</h1>
+
+			<h3>Hello, {loggedInUser.userName}</h3>
 
 			<div className="sort_container">
 				<h4>Sort by:</h4>
