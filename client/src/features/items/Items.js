@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from 'react-router-dom'
 import AddItemForm from "./AddItemForm";
 import ListByShops from "../shops/ListByShops";
 import ListByUsers from "../users/ListByUsers";
@@ -28,8 +27,6 @@ function Items({ refresh }) {
 	return (
 		<div className="items">
 			<h1>Shopping List</h1>
-
-			<AuthBox />
 
 			<div className="sort_container">
 				<h4>Sort by:</h4>

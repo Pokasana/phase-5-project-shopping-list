@@ -6,10 +6,16 @@ import Items from './features/items/Items'
 import SingleItemPage from './features/items/SingleItemPage'
 import LoginPage from './features/login/LoginPage'
 import NavBar from './app/NavBar'
+import AuthBox from './features/login/AuthBox'
+
+import { useSelector } from 'react-redux'
+import { selectLoggedInUser } from './features/login/loginSlice'
 
 function App() {
   const [isLoaded,  setIsLoaded] = useState(false);
   const [refreshPage,  setRefreshPage] = useState(false)
+
+  const currentUser = useSelector(selectLoggedInUser)
 
   function refresh() {
     setRefreshPage(!refreshPage)
@@ -18,8 +24,14 @@ function App() {
   return (
     <div>
       <NavBar />
+      
+      {Object.keys(currentUser).length > 0
+        ? <AuthBox />
+        : null
+      }
+
       <Switch>
-        <Route exact path="/login">
+        <Route exact path="/login" element={<LoginPage />}>
           <LoginPage/>
         </Route>
         <Route exact path="/items">
