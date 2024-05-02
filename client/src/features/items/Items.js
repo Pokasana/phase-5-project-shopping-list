@@ -6,18 +6,6 @@ function Items({ refresh }) {
 	const [onAddItem, setOnAddItem] = useState(false)
 	const [filterBy, setFilterBy] = useState('shop')
 
-	function onItemDelete(id) {
-		fetch(`http://127.0.0.1:5555/items/${id}`, {
-			method: "DELETE",
-		})
-		.then(r => r.json())
-		.then((res) => {
-      if (res.delete_successful === true) {
-        refresh()
-      }
-		});
-	};
-
 	function resetOnAddItem() {
 		setOnAddItem(false)
 	}
@@ -38,7 +26,7 @@ function Items({ refresh }) {
 			</div>
 
 			<div className="item_list_container">
-				<SortedItems filterBy={filterBy} clickHandler={onItemDelete}/>
+				<SortedItems filterBy={filterBy} />
 			</div>
  
 			<button id="add_item" onClick={() => setOnAddItem(!onAddItem)} style={{display: onAddItem ? "none" : ""}}>
