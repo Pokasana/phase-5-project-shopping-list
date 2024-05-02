@@ -69,7 +69,7 @@ if __name__ == '__main__':
         comments = []
 
         for i in range(6):
-            comments.append(Comment(content = fake.text(), user=users[randint(0, 2)], item=items[randint(0, 9)]))
+            comments.append(Comment(content = fake.text(max_nb_chars=80), user=users[randint(0, 2)], item=items[randint(0, 9)]))
 
         db.session.add_all(comments)
         db.session.commit()
