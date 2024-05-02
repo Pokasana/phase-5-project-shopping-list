@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectAllUsers } from '../users/usersSlice'
 import { authenticated } from './loginSlice'
 
-function LoginPage() {
+function LoginPage({ message }) {
 	const [userName, setUserName] = useState("")
 	const [userId, setUserId] = useState(0)
 
@@ -35,6 +35,8 @@ function LoginPage() {
 	return (
 		<div id="loginform">
 			<h1>Login Page</h1>
+
+			<p style={{color: "red"}}>{message}</p>
 			
 			<h3>Please select a user</h3>
 			<select id="login" name="login" onChange={onUserChosen}>

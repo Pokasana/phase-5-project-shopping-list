@@ -1,17 +1,24 @@
-import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 
-import { useSelector } from 'react-router'
-import { selectLoggedInUser } from '../features/login/loginSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { checkAuth, selectLoggedInUser } from '../features/login/loginSlice'
 
-const PrivateRoute = ({ Component }) => {
-    const [ loggedIn, setLoggedIn ] = useState(false)
-    
-    const currentUser = useSelector(selectLoggedInUser)
+const PrivateRoute = ({ component: Component }) => {
+		const dispatch = useDispatch()
 
-    Object.keys(currentUser).length > 0 ? setLoggedIn(!loggedIn) : loggedIn
+  useEffect(() => {
+    dispatch(checkAuth)
+  },[dispatch])
 
-    return loggedIn ? <Component /> : <Navigate to="/login" />;
+	const currentUser = useSelector(selectLoggedInUser);
+	const loggedIn = Object.keys(currentUser).length > 0;
+
+	return (
+		<>
+			{loggedIn ? <Component /> : <Redirect to="/login"/>}
+		</>
+	);
 }
 
 export default PrivateRoute;

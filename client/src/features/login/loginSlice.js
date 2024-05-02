@@ -17,6 +17,15 @@ export const authenticated = createAsyncThunk(
 	}
 )
 
+export const checkAuth = createAsyncThunk(
+	'login/checkAuth',
+	async () => {
+		const response = await fetch("http://127.0.0.1:5555/checkSession")
+		const data = await response.json()
+		return data
+	}
+)
+
 export const loggedOut = createAsyncThunk(
 	'login/loggedOut',
 	async () => {
@@ -38,6 +47,10 @@ const loginSlice = createSlice({
 		})
 		builder.addCase(loggedOut.fulfilled, (state, action) => {
 			return {}
+		})
+		builder.addCase(checkAuth.fulfilled, (state, action) => {
+			console.log(action.payload)
+			return action.payload
 		})
 	}
 })

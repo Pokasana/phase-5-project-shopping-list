@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import  Users from './features/users/Users'
 import  Shops from './features/shops/Shops'
@@ -7,13 +7,16 @@ import SingleItemPage from './features/items/SingleItemPage'
 import LoginPage from './features/login/LoginPage'
 import NavBar from './app/NavBar'
 import AuthBox from './features/login/AuthBox'
+import PrivateRoute from './app/PrivateRoute'
 
-import { useSelector } from 'react-redux'
-import { selectLoggedInUser } from './features/login/loginSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { checkAuth, selectLoggedInUser } from './features/login/loginSlice'
 
 function App() {
   const [isLoaded,  setIsLoaded] = useState(false);
   const [refreshPage,  setRefreshPage] = useState(false)
+
+  const dispatch = useDispatch()
 
   const currentUser = useSelector(selectLoggedInUser)
 
@@ -21,19 +24,22 @@ function App() {
     setRefreshPage(!refreshPage)
   };
 
+  useEffect(() => {
+    dispatch(checkAuth)
+    console.log(currentUser)
+  },[selectLoggedInUser, dispatch])
+
   return (
     <div>
       <NavBar />
-      
+
       {Object.keys(currentUser).length > 0
         ? <AuthBox />
         : null
       }
 
       <Switch>
-        <Route exact path="/login" element={<LoginPage />}>
-          <LoginPage/>
-        </Route>
+        <Route exact path="/login" component={LoginPage}/>
         <Route exact path="/items">
           <Items isLoaded={isLoaded} refresh={refresh}/>
         </Route>
@@ -41,10 +47,10 @@ function App() {
           <SingleItemPage/>
         </Route>
         <Route path="/users">
-          <Users />
+          <PrivateRoute component={Users}/>
         </Route>
         <Route path="/shops">
-          <Shops />
+          <PrivateRoute component={Shops}/>
         </Route>
       </Switch>
     </div>

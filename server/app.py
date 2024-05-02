@@ -204,7 +204,7 @@ class Login(Resource):
         return response
     
     def delete(self):
-        session['user_id'] = 0
+        session['user_id'] = None
 
         return {"logout_successful": True, "message": "User logged out"}
     
@@ -212,7 +212,7 @@ class CheckSession(Resource):
     def get(self):
         user = User.query.filter(User.id == session.get("user_id")).first()
         if user:
-            return user.to_dict()
+            return {user.to_dict()}, 200
         else:
             return {"message": '401: Not Authorized'}, 401
 
