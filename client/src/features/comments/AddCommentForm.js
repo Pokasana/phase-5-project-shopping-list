@@ -12,14 +12,14 @@ function AddCommentForm({ item }) {
   const currentUser = useSelector(selectLoggedInUser)
 
   const formSchema = yup.object().shape({
-    comment: yup.string(),
+    content: yup.string(),
     item_id: yup.number(),
     user_id: yup.number()
   });
 
   const formik = useFormik({
     initialValues: {
-      comment: "",
+      content: "",
       item_id: item.id,
       user_id: currentUser.id
     },
@@ -34,16 +34,16 @@ function AddCommentForm({ item }) {
     <form className="add_comment" onSubmit={formik.handleSubmit}>
       <h3>Add a comment</h3>
       <input
-        id="comment"
-        name="comment"
+        id="content"
+        name="content"
         autoComplete="off"
         onChange={formik.handleChange}
-        value={formik.values.comment}
+        value={formik.values.content}
         style={{width: "350px"}}
       />
       <button type="submit">+</button>
 
-      <p style={{color: "red"}}>{formik.errors.comment}</p>
+      <p style={{color: "red"}}>{formik.errors.content}</p>
     </form>
   )
 };

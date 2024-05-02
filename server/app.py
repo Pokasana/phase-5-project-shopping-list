@@ -190,10 +190,11 @@ class Comments(Resource):
         request_json = request.get_json()
 
         new_comment =  Comment(
-            content = request_json["name"],
-            user_id = request_json["userId"],
-            item_id = request_json["itemId"]
+            content = request_json["content"],
+            user_id = request_json["user_id"],
+            item_id = request_json["item_id"]
         )
+        print(new_comment)
 
         db.session.add(new_comment)
         db.session.commit()

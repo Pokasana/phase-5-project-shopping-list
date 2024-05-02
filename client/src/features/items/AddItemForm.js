@@ -27,7 +27,7 @@ function AddItemForm({ onAddItem, resetOnAddItem }) {
     initialValues: {
       name: "",
       favorite: false,
-      user_name: "",
+      user_name: currentUser.name,
       shop_name: ""
     },
     validationSchema: formSchema,
@@ -71,7 +71,7 @@ function AddItemForm({ onAddItem, resetOnAddItem }) {
         onBlur={formik.handleBlur}
         style={{ display: "block"}}
       >
-        <option value="" label="" >{currentUser.name}</option>
+        <option value={currentUser.name} label={currentUser.name} >{currentUser.name}</option>
         {
           users.map(user => {
             return (
