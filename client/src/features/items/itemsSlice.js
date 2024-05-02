@@ -62,7 +62,14 @@ const itemsSlice = createSlice({
 			return state.concat(action.payload)
 		})
 		builder.addCase(editItem.fulfilled, (state, action) => {
-			return [...state, action.payload]
+			const updatedItem = action.payload
+			const index = state.findIndex(item => item.id === updatedItem.id)
+			if (index !== -1) {
+				const newState = [...state];
+				newState[index] = updatedItem;
+				return newState
+			}
+			return state
 		})
 		builder.addCase(deleteItem.fulfilled, (state, action) => {
 			return [...state].filter(item => item.id !== action.payload.itemId)

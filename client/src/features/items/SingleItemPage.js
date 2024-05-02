@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 import { selectItemById } from './itemsSlice'
 import CommentsCard from '../comments/CommentsCard'
+import EditItemForm from './EditItemForm'
 
 function SingleItemPage () {
 	const { itemId } = useParams()
@@ -35,6 +36,7 @@ function SingleItemPage () {
 			<h1>Item Page</h1>
 			{item_card(item)}
 			<CommentsCard comments={item.comments} />
+			<EditItemForm item={item}/>
 		</div>
 	)
 }

@@ -32,15 +32,18 @@ function ItemList ({ items, filterBy, filterElement, clickHandler }) {
 							✔️
 						</button>
 
-						<button className="emoji_button" onClick={() => {setOnEditId(onEditId === null ? id : null) }} >
+						{/* <button className="emoji_button" onClick={() => {setOnEditId(onEditId === null ? id : null) }} > */}
+						<Link to={`/items/${id}`}>
+						<button className="emoji_button" >
 							✏️
 						</button>
+						</Link>
 
 						&nbsp;&nbsp;&nbsp;
 
 						{comments.length ? (<Link to={`/items/${id}`}>Comments</Link>) : null}
 
-						<EditItemForm item={item} filterBy={filterBy} filterElement={filterElement} onEditId={onEditId} resetEditId={resetEditId}/>
+						{/* <EditItemForm item={item} filterBy={filterBy} filterElement={filterElement} onEditId={onEditId} resetEditId={resetEditId}/> */}
 					</li>
 				)
 			})}

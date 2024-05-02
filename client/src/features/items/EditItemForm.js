@@ -1,13 +1,15 @@
 import React from "react";
+import { useHistory } from 'react-router-dom'
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 import { useDispatch } from 'react-redux'
 import { editItem } from './itemsSlice'
 
-function EditItemForm ({ item, filterBy, filterElement, onEditId, resetEditId }) {
+function EditItemForm ({ item }) {
 
 	const dispatch = useDispatch()
+	const history = useHistory()
 
 	const formSchema = yup.object().shape({
 		id: yup.number(),
@@ -22,18 +24,20 @@ function EditItemForm ({ item, filterBy, filterElement, onEditId, resetEditId })
 			id: item.id,
 			name: item.name,
 			favorite: item.favorite,
-			user_name: filterBy === 'users' ? filterElement.name : item.user.name,
-			shop_name: filterBy === 'shops' ? filterElement.name : item.shop.name
+			user_name: item.user.name,
+			shop_name: item.shop.name
 		},
 		validationSchema: formSchema,
 		onSubmit: async (values) => {
 			await dispatch(editItem(values)).unwrap()
-			resetEditId();
+			history.push('/items')
 		}
+		
 	});
 
 	return (
-		<form className="edit_item_container" onSubmit={formik.handleSubmit} style={{display: onEditId === item.id ? "" : "none"}}>
+		// <form className="edit_item_container" onSubmit={formik.handleSubmit} style={{display: onEditId === item.id ? "" : "none"}}>
+		<form className="edit_item_container" onSubmit={formik.handleSubmit}>
 			<h3>Edit Item</h3>
 
 			<label htmlFor="name">Item Name</label><br/>

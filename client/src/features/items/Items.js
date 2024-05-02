@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import AddItemForm from "./AddItemForm";
 import ListByShops from "../shops/ListByShops";
 import ListByUsers from "../users/ListByUsers";
+import SortedItems from "./SortedItems"
 
 function Items({ refresh }) {
 	const [onAddItem, setOnAddItem] = useState(false)
-	const [filterBy, setFilterBy] = useState('shops')
+	const [filterBy, setFilterBy] = useState('shop')
 
 	function onItemDelete(id) {
 		fetch(`http://127.0.0.1:5555/items/${id}`, {
@@ -32,18 +33,20 @@ function Items({ refresh }) {
 
 				<div className="custom-select" style={{width: "200px"}}>
 					<select name="filter" id="filter" onChange={(e) => setFilterBy(e.target.value)}>
-						<option value="shops">Shops</option>
-						<option value="users">Users</option>
+						<option value="shop">Shops</option>
+						<option value="user">Users</option>
 					</select>
 				</div>
 			</div>
 
 			<div className="item_list_container">
-				{
-					filterBy === "shops"
+				{/* {
+					filterBy === "shop"
 					? <ListByShops filterBy={filterBy} clickHandler={onItemDelete} />
 					: <ListByUsers filterBy={filterBy} clickHandler={onItemDelete} />
-				}
+				} */}
+
+				<SortedItems filterBy={filterBy} clickHandler={onItemDelete}/>
 
 			</div>
  
