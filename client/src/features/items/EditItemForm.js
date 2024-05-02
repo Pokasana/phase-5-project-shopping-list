@@ -26,8 +26,8 @@ function EditItemForm ({ item, filterBy, filterElement, onEditId, resetEditId })
 			shop_name: filterBy === 'shops' ? filterElement.name : item.shop.name
 		},
 		validationSchema: formSchema,
-		onSubmit: (values) => {
-			dispatch(editItem(values))
+		onSubmit: async (values) => {
+			await dispatch(editItem(values)).unwrap()
 			resetEditId();
 		}
 	});

@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AddItemForm from "./AddItemForm";
 import ListByShops from "../shops/ListByShops";
 import ListByUsers from "../users/ListByUsers";
 
-import { useDispatch } from 'react-redux'
-import { fetchUsers } from '../users/usersSlice'
-import { fetchShops } from '../shops/shopsSlice'
-
-
 function Items({ refresh }) {
 	const [onAddItem, setOnAddItem] = useState(false)
 	const [filterBy, setFilterBy] = useState('shops')
-
-	const dispatch = useDispatch()
-
-	// useEffect(() => {
-	// 	console.log('fetching from items.js')
-	// 	dispatch(fetchUsers())
-	// 	dispatch(fetchShops())
-	// }, [dispatch])
 
 	function onItemDelete(id) {
 		fetch(`http://127.0.0.1:5555/items/${id}`, {
