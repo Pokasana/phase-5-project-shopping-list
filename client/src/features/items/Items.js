@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import AddItemForm from "./AddItemForm";
-import ListByShops from "../shops/ListByShops";
-import ListByUsers from "../users/ListByUsers";
 import SortedItems from "./SortedItems"
 
 function Items({ refresh }) {
@@ -40,14 +38,7 @@ function Items({ refresh }) {
 			</div>
 
 			<div className="item_list_container">
-				{/* {
-					filterBy === "shop"
-					? <ListByShops filterBy={filterBy} clickHandler={onItemDelete} />
-					: <ListByUsers filterBy={filterBy} clickHandler={onItemDelete} />
-				} */}
-
 				<SortedItems filterBy={filterBy} clickHandler={onItemDelete}/>
-
 			</div>
  
 			<button id="add_item" onClick={() => setOnAddItem(!onAddItem)} style={{display: onAddItem ? "none" : ""}}>
