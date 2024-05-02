@@ -1,26 +1,36 @@
 import React from 'react'
 
-function CommentsCard({ comments }) {
+import { useSelector, useDispatch } from 'react-redux'
+import { selectAllComments, deleteComment } from './commentsSlice'
+
+function CommentsCard({ currentItem }) {
+	const dispatch = useDispatch()
+
+	const allComments = useSelector(selectAllComments)
+	const selectedComments = allComments.filter(comment => comment.item.id === currentItem.id)
 
 	return (
 		<div className='comments_container'>
 			<h4>Comments</h4>
 			{
-				comments.length !== 0?
-				<ul>
-					{comments.map(comment => {
+				selectedComments.length !== 0?
+				<section className='comment_card'>
+					{selectedComments.map(comment => {
 						const {id, content, user} = comment
+
 						return (
 							<section key={id}>
-								<li className='comment_card'>
-									{content}<br/>
+								<p className='comment_card'>
+									{content}
+									&nbsp;&nbsp;
 									- {user.name}
-								</li>
-								<br/>
+									&nbsp;&nbsp;
+									<button style={{display: "inline"}} onClick={() => dispatch(deleteComment(id))}>x</button>
+								</p>
 							</section>
 						)
 					})}
-				</ul>
+				</section>
 				:
 				<p>There are no comments</p>
 			}

@@ -7,6 +7,7 @@ import { store } from './app/store'
 import { fetchUsers } from './features/users/usersSlice'
 import { fetchShops } from './features/shops/shopsSlice'
 import { fetchItems } from './features/items/itemsSlice'
+import { fetchComments } from './features/comments/commentsSlice'
 import App from "./App";
 
 import "./index.css";
@@ -17,6 +18,7 @@ const root = createRoot(container);
 store.dispatch(fetchUsers())
 store.dispatch(fetchShops())
 store.dispatch(fetchItems())
+store.dispatch(fetchComments())
 
 root.render(
     <Provider store={store}>

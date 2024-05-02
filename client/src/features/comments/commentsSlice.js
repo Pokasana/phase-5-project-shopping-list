@@ -20,6 +20,17 @@ export const addNewComment = createAsyncThunk('items/addNewComment', async (valu
 	return data
 })
 
+export const deleteComment = createAsyncThunk(
+	'users/deleteComment',
+	async (id) => {
+		const response = await fetch(`http://127.0.0.1:5555/comments/${id}`, {
+			method: "DELETE",
+		})
+		const data = await response.json()
+		return data
+	}
+)
+
 
 const commentsSlice = createSlice({
 	name: 'comments',
@@ -31,6 +42,9 @@ const commentsSlice = createSlice({
 		})
 		builder.addCase(addNewComment.fulfilled, (state, action) => {
 			return state.concat(action.payload)
+		})
+		builder.addCase(deleteComment.fulfilled, (state, action) => {
+			return state.filter(comment => comment.id !== action.payload.commentId)
 		})
 	}
 })

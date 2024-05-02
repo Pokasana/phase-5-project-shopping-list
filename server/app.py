@@ -206,8 +206,22 @@ class Comments(Resource):
         return response
     
 class CommentById(Resource):
-    def delete(self, id):
+    def get(self, id):
         comment = Comment.query.filter_by(id=id).first()
+        print(comment)
+
+        response = make_response(
+            comment.to_dict(),
+            200
+        )
+
+        return response
+
+    def delete(self, id):
+        print("comment delete request starts")
+        print(id)
+        comment = Comment.query.filter_by(id=id).first()
+        print(comment)
 
         db.session.delete(comment)
         db.session.commit()
@@ -254,6 +268,7 @@ api.add_resource(ShopById, '/shops/<int:id>')
 api.add_resource(Items, '/items')
 api.add_resource(ItemById, '/items/<int:id>')
 api.add_resource(Comments, '/comments')
+api.add_resource(CommentById, '/comments/<int:id>')
 
 @app.route('/')
 def index():
