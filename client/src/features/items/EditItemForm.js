@@ -2,9 +2,15 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
+import { useDispatch } from 'react-redux'
+import { editItem } from './itemsSlice'
+
 function EditItemForm ({ item, filterBy, filterElement, onEditId, resetEditId }) {
 
+	const dispatch = useDispatch()
+
 	const formSchema = yup.object().shape({
+		id: yup.number(),
 		name: yup.string(),
 		favorite: yup.bool(),
 		user_name: yup.string(),
@@ -13,6 +19,7 @@ function EditItemForm ({ item, filterBy, filterElement, onEditId, resetEditId })
 
 	const formik = useFormik({
 		initialValues: {
+			id: item.id,
 			name: item.name,
 			favorite: item.favorite,
 			user_name: filterBy === 'users' ? filterElement.name : item.user.name,
@@ -20,18 +27,8 @@ function EditItemForm ({ item, filterBy, filterElement, onEditId, resetEditId })
 		},
 		validationSchema: formSchema,
 		onSubmit: (values) => {
-			fetch(`http://127.0.0.1:5555/items/${item.id}`, {
-				method: "PATCH",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(values)
-			})
-			.then(r => {
-				if (r.status === 200) {
-					resetEditId();
-				}
-			})
+			dispatch(editItem(values))
+			resetEditId();
 		}
 	});
 

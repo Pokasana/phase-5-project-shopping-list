@@ -150,7 +150,8 @@ class ItemById(Resource):
         item = Item.query.filter_by(id=id).first()
 
         request_json = request.get_json()
-
+		
+        item.id = request_json["id"]
         item.name = request_json["name"]
         item.favorite = request_json["favorite"]
         item.user_id = User.query.filter(User.name == request_json["user_name"]).first().id

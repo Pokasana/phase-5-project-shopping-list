@@ -2,17 +2,22 @@ import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 
 import { useDispatch, useSelector } from 'react-redux'
-import { selectAllUsers } from '../users/usersSlice'
-import { authenticated } from './loginSlice'
+import { fetchUsers, selectAllUsers } from '../users/usersSlice'
+import { checkAuth, authenticated } from './loginSlice'
 
-function LoginPage({ message }) {
+function LoginPage() {
 	const [userName, setUserName] = useState("")
 	const [userId, setUserId] = useState(0)
 
 	const history = useHistory()
 	const dispatch = useDispatch()
-	
+
 	const users = useSelector(selectAllUsers)
+	
+	useEffect(() => {
+		dispatch(checkAuth)
+		dispatch(fetchUsers())
+	}, [dispatch])
 
 	const onUserChosen = e => {
 		const user = JSON.parse(e.target.value)
@@ -35,8 +40,6 @@ function LoginPage({ message }) {
 	return (
 		<div id="loginform">
 			<h1>Login Page</h1>
-
-			<p style={{color: "red"}}>{message}</p>
 			
 			<h3>Please login!</h3>
 			<select id="login" name="login" onChange={onUserChosen}>
