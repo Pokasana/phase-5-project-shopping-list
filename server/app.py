@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, make_response
+from flask import request, make_response, session
 from flask_restful import Resource
 
 # Local imports
@@ -184,7 +184,40 @@ class Comments(Resource):
         )
 
         return response
+    
+class Login(Resource):
+    def get(self):
+        return {}
 
+    def post(self):
+        user = User.query.filter(
+            User.id == request.get_json()['id']
+        ).first()
+
+        session['user_id'] = user.id
+        
+        response = make_response(
+            user.to_dict(),
+            201
+        )
+
+        return response
+    
+    def delete(self):
+        session['user_id'] = 0
+
+        return {"logout_successful": True, "message": "User logged out"}
+    
+class CheckSession(Resource):
+    def get(self):
+        user = User.query.filter(User.id == session.get("user_id")).first()
+        if user:
+            return user.to_dict()
+        else:
+            return {"message": '401: Not Authorized'}, 401
+
+api.add_resource(Login, '/login')
+api.add_resource(CheckSession, '/check_session')
 api.add_resource(Users, '/users')
 api.add_resource(UserById, '/users/<int:id>')
 api.add_resource(Shops, '/shops')

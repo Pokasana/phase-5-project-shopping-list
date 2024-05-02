@@ -3,11 +3,9 @@ import { useHistory } from "react-router-dom"
 
 import { useDispatch, useSelector } from 'react-redux'
 import { selectAllUsers } from '../users/usersSlice'
-import { loginSuccess, selectLoggedInUser } from './loginSlice'
+import { authenticated } from './loginSlice'
 
 function LoginPage() {
-	const [isLoggedIn, setIsLoggedIn] = useState(null)
-
 	const [userName, setUserName] = useState("")
 	const [userId, setUserId] = useState(0)
 
@@ -15,7 +13,6 @@ function LoginPage() {
 	const dispatch = useDispatch()
 	
 	const users = useSelector(selectAllUsers)
-	const loggedInUser = useSelector(selectLoggedInUser)
 
 	const onUserChosen = e => {
 		const user = JSON.parse(e.target.value)
@@ -23,16 +20,10 @@ function LoginPage() {
 		setUserId(Number(user.id))
 	}
 
-	// useEffect(() => {
-	// 	if(loggedInUser.userId !== null) {
-	// 		history.push('/items')
-	// 	}
-	// }, [loggedInUser])
-
 	const onLoginSubmit = () => {
 		if (userName && userId) {
 			dispatch(
-				loginSuccess({
+				authenticated({
 					id: userId,
 					name: userName
 				})
@@ -40,7 +31,6 @@ function LoginPage() {
 			history.push('/items')
 		}
 	}
-
 
 	return (
 		<div id="loginform">
