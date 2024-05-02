@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import AddItemForm from "./AddItemForm";
 import ListByShops from "../shops/ListByShops";
 import ListByUsers from "../users/ListByUsers";
-import AuthBox from "../login/AuthBox"
 
 function Items({ refresh }) {
 	const [onAddItem, setOnAddItem] = useState(false)
