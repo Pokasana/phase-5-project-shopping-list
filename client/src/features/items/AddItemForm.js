@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectAllUsers } from '../users/usersSlice'
 import { selectAllShops } from '../shops/shopsSlice'
 import { addNewItem } from './itemsSlice'
+import { selectLoggedInUser } from '../login/loginSlice'
 
 function AddItemForm({ onAddItem, resetOnAddItem }) {
 
@@ -13,6 +14,7 @@ function AddItemForm({ onAddItem, resetOnAddItem }) {
 
   const users = useSelector(selectAllUsers)
   const shops = useSelector(selectAllShops)
+  const currentUser = useSelector(selectLoggedInUser)
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Must enter an item name"),
@@ -69,7 +71,7 @@ function AddItemForm({ onAddItem, resetOnAddItem }) {
         onBlur={formik.handleBlur}
         style={{ display: "block"}}
       >
-        <option value="" label="Current User" >Current User</option>
+        <option value="" label="" >{currentUser.name}</option>
         {
           users.map(user => {
             return (
