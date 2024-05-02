@@ -14,10 +14,11 @@ function Items({ refresh }) {
 
 	const dispatch = useDispatch()
 
-	useEffect(() => {
-		// dispatch(fetchUsers())
-		dispatch(fetchShops())
-	}, [dispatch])
+	// useEffect(() => {
+	// 	console.log('fetching from items.js')
+	// 	dispatch(fetchUsers())
+	// 	dispatch(fetchShops())
+	// }, [dispatch])
 
 	function onItemDelete(id) {
 		fetch(`http://127.0.0.1:5555/items/${id}`, {

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUsers, selectAllUsers } from '../users/usersSlice'
-import { checkAuth, authenticated } from './loginSlice'
+import { selectAllUsers } from '../users/usersSlice'
+import { authenticated } from './loginSlice'
 
 function LoginPage() {
 	const [userName, setUserName] = useState("")
@@ -14,25 +14,20 @@ function LoginPage() {
 
 	const users = useSelector(selectAllUsers)
 	
-	useEffect(() => {
-		dispatch(checkAuth)
-		dispatch(fetchUsers())
-	}, [dispatch])
-
 	const onUserChosen = e => {
 		const user = JSON.parse(e.target.value)
 		setUserName(user.name)
 		setUserId(Number(user.id))
 	}
 
-	const onLoginSubmit = () => {
+	const onLoginSubmit = async () => {
 		if (userName && userId) {
-			dispatch(
+			await dispatch(
 				authenticated({
 					id: userId,
 					name: userName
 				})
-			)
+			).unwrap();
 			history.push('/items')
 		}
 	}
@@ -47,10 +42,9 @@ function LoginPage() {
 				{users.map(user => <option key={user.id} value={JSON.stringify(user)}>{user.name}</option>)}
 			</select>
 			&nbsp;
-			<button onClick={onLoginSubmit}>Login</button>
+			<button onClick={() => {onLoginSubmit()}}>Login</button>
 
 		</div>
-
 	)
 }
 
