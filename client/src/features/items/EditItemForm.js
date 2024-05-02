@@ -3,13 +3,18 @@ import { useHistory } from 'react-router-dom'
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectAllUsers } from '../users/usersSlice'
+import { selectAllShops } from '../shops/shopsSlice'
 import { editItem } from './itemsSlice'
 
 function EditItemForm ({ item }) {
 
 	const dispatch = useDispatch()
 	const history = useHistory()
+
+  const users = useSelector(selectAllUsers)
+  const shops = useSelector(selectAllShops)
 
 	const formSchema = yup.object().shape({
 		id: yup.number(),
@@ -36,7 +41,6 @@ function EditItemForm ({ item }) {
 	});
 
 	return (
-		// <form className="edit_item_container" onSubmit={formik.handleSubmit} style={{display: onEditId === item.id ? "" : "none"}}>
 		<form className="edit_item_container" onSubmit={formik.handleSubmit}>
 			<h3>Edit Item</h3>
 
@@ -62,23 +66,43 @@ function EditItemForm ({ item }) {
 			<p style={{color: "red"}}>{formik.errors.favorite}</p>
 
 			<label htmlFor="user_name">User</label><br/>
-			<input
-				id="user_name"
-				name="user_name"
-				autoComplete="off"
-				onChange={formik.handleChange}
-				value={formik.values.user_name}
-			/>
+			<select
+        id="user_name"
+        name="user_name"
+        onChange={formik.handleChange}
+        value={formik.values.user_name}
+        onBlur={formik.handleBlur}
+        style={{ display: "block"}}
+      >
+        <option value="" label="Current User" >{formik.values.user_name}</option>
+        {
+          users.map(user => {
+            return (
+              <option key={user.id} value={user.name}>{user.name}</option>
+            )
+          })
+        }
+      </select>
 			<p style={{color: "red"}}>{formik.errors.user_name}</p>
 
 			<label htmlFor="shop_name">Shop</label><br/>
-			<input
-				id="shop_name"
-				name="shop_name"
-				autoComplete="off"
-				onChange={formik.handleChange}
-				value={formik.values.shop_name}
-			/>
+			<select
+        id="shop_name"
+        name="shop_name"
+        onChange={formik.handleChange}
+        value={formik.values.shop_name}
+        onBlur={formik.handleBlur}
+        style={{ display: "block"}}
+      >
+        <option value="" label="Select shop" >{formik.values.shop_name}</option>
+        {
+          shops.map(shop => {
+            return (
+              <option key={shop.id} value={shop.name}>{shop.name}</option>
+            )
+          })
+        }
+      </select>
 			<p style={{color: "red"}}>{formik.errors.shop_name}</p>
 
 			<button type="submit">Submit Change</button>

@@ -7,18 +7,13 @@ import { deleteItem, selectAllItems } from "./itemsSlice"
 import { selectAllShops } from "../shops/shopsSlice"
 import { selectAllUsers } from "../users/usersSlice"
 
-function SortedItems ({ filterBy, clickHandler }) {
-	const [onEditId, setOnEditId] = useState(null)
+function SortedItems ({ filterBy }) {
 
 	const shopsList = useSelector(selectAllShops)
 	const usersList = useSelector(selectAllUsers)
 	const items = useSelector(selectAllItems)
 
 	const dispatch = useDispatch()
-
-	function resetEditId() {
-		setOnEditId(null)
-	};
 
 	const sortCategoryList = filterBy === 'shop' ? shopsList : usersList
 
