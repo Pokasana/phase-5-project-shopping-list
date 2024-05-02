@@ -190,3 +190,10 @@ input[type="checkbox"]:checked::before {
   border: 0.05em solid #F2E3D5;
   border-radius: 0.2em;
 }
+
+#auth_box {
+  text-align: right;
+  float: right;
+  display: inline;
+  width: 200px;
+}

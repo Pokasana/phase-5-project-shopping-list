@@ -19,7 +19,7 @@ function App() {
     <div>
       <NavBar />
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/login">
           <LoginPage/>
         </Route>
         <Route exact path="/items">

@@ -3,18 +3,11 @@ import { useHistory } from 'react-router-dom'
 import AddItemForm from "./AddItemForm";
 import ListByShops from "../shops/ListByShops";
 import ListByUsers from "../users/ListByUsers";
-
-import { useSelector, useDispatch } from 'react-redux'
-import { loggedOut, selectLoggedInUser } from '../login/loginSlice'
+import AuthBox from "../login/AuthBox"
 
 function Items({ refresh }) {
 	const [onAddItem, setOnAddItem] = useState(false)
 	const [filterBy, setFilterBy] = useState('shops')
-
-	const currentUser = useSelector(selectLoggedInUser)
-
-	const dispatch = useDispatch()
-	const history = useHistory()
 
 	function onItemDelete(id) {
 		fetch(`http://127.0.0.1:5555/items/${id}`, {
@@ -28,11 +21,6 @@ function Items({ refresh }) {
 		});
 	};
 
-	const onLogout = (e) => {
-		dispatch(loggedOut)
-		history.push('/')
-	}
-
 	function resetOnAddItem() {
 		setOnAddItem(false)
 	}
@@ -41,9 +29,7 @@ function Items({ refresh }) {
 		<div className="items">
 			<h1>Shopping List</h1>
 
-			<h3>Hello, {currentUser.name}</h3>
-			{console.group(currentUser.name)}
-			<button id="logout" onClick={onLogout}>Logout</button>
+			<AuthBox />
 
 			<div className="sort_container">
 				<h4>Sort by:</h4>
