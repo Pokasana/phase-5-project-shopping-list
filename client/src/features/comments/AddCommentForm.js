@@ -3,40 +3,40 @@ import { useFormik } from 'formik';
 import * as yup from "yup";
 
 import { useDispatch } from 'react-redux'
-import { addNewUser } from './usersSlice'
+import { addNewComment } from './commentsSlice'
 
 function AddCommentForm() {
 
   const dispatch = useDispatch()
 
   const formSchema = yup.object().shape({
-    user: yup.string().required("Must enter an user name")
+    content: yup.string()
   });
 
   const formik = useFormik({
     initialValues: {
-      user: "",
+      content: "",
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) =>  {
-      dispatch(addNewUser(values))
+      dispatch(addNewComment(values))
       resetForm();
     }
   })
 
   return (
-    <form className="add_user" onSubmit={formik.handleSubmit}>
-      <h3>Add a new user</h3>
+    <form className="add_comment" onSubmit={formik.handleSubmit}>
+      <h3>Add a comment</h3>
       <input
-        id="user"
-        name="user"
+        id="content"
+        name="content"
         autoComplete="off"
         onChange={formik.handleChange}
-        value={formik.values.user}
+        value={formik.values.content}
       />
       <button type="submit">+</button>
 
-      <p style={{color: "red"}}>{formik.errors.user}</p>
+      <p style={{color: "red"}}>{formik.errors.content}</p>
     </form>
   )
 };
