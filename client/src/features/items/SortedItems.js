@@ -42,7 +42,7 @@ function SortedItems ({ filterBy }) {
 					</Link>
 
 					&nbsp;&nbsp;&nbsp;
-					{comments.length !== 0 ? (<Link to={`/items/${id}`}>Comments</Link>) : null}
+					{comments.length !== 0 ? (<Link id="comment_flag" to={`/items/${id}`}>Comments</Link>) : null}
 				</li>
 			)
 		})

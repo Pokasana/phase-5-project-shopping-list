@@ -210,3 +210,8 @@ input[type="checkbox"]:checked::before {
   display: inline;
   width: 200px;
 }
+
+#comment_flag {
+  color: #024959;
+  font-size: 0.9em;
+}
