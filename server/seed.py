@@ -32,10 +32,10 @@ if __name__ == '__main__':
         print("Users seeded")
 
         shops = []
-        shops.append(Shop(name = 'Costco'))
-        shops.append(Shop(name = 'Safeway'))
-        shops.append(Shop(name = 'Whole Foods'))
-        shops.append(Shop(name = 'The Home Depot'))
+        shops.append(Shop(name = 'Groceco'))
+        shops.append(Shop(name = 'Unsafeway'))
+        shops.append(Shop(name = 'Hole Foods'))
+        shops.append(Shop(name = 'Post Malone Depot'))
 
         db.session.add_all(shops)
         db.session.commit()

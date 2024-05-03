@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { useDispatch } from 'react-redux'
 import { addNewShop } from './shopsSlice'
 
-function AddShopForm({ refresh }) {
+function AddShopForm() {
 
   const dispatch = useDispatch()
 

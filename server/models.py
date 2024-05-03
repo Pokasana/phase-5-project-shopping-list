@@ -1,10 +1,8 @@
 from sqlalchemy import func
 from sqlalchemy_serializer import SerializerMixin
-from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy.orm import validates
 
 from config import db, metadata
-
-# Models go here!
 
 users_shops = db.Table(
     'users_shops',
@@ -36,6 +34,14 @@ class Shop(db.Model, SerializerMixin):
 
     items = db.relationship('Item', back_populates='shop', cascade='all, delete-orphan')
     users = db.relationship('User', secondary=users_shops, back_populates='shops')
+
+    @validates('name')
+    def validate_shop(self, key, string):
+        if len(string) > 0:
+            return string
+        else: 
+            raise ValueError
+        
 
     def __repr__(self):
         return f'Shop: {self.id} {self.name}'

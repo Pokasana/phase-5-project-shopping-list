@@ -18,10 +18,10 @@ function EditItemForm ({ item }) {
 
 	const formSchema = yup.object().shape({
 		id: yup.number(),
-		name: yup.string(),
+		name: yup.string().required("Must enter an item name"),
 		favorite: yup.bool(),
-		user_name: yup.string(),
-		shop_name: yup.string()
+		user_name: yup.string().required("Please select a user"),
+		shop_name: yup.string().required("Please select a shop")
 	});
 
 	const formik = useFormik({
@@ -74,7 +74,7 @@ function EditItemForm ({ item }) {
         onBlur={formik.handleBlur}
         style={{ display: "block"}}
       >
-        <option value="" label="Current User" >{formik.values.user_name}</option>
+        <option value="" label="Select user" >{formik.values.user_name}</option>
         {
           users.map(user => {
             return (
