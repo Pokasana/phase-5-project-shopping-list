@@ -22,6 +22,13 @@ class User(db.Model, SerializerMixin):
     shops = db.relationship('Shop', secondary=users_shops, back_populates='users')
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete-orphan')
 
+    @validates('name')
+    def validate_shop(self, key, string):
+        if len(string) > 0:
+            return string
+        else: 
+            raise ValueError("The user name must be entered and more than 1 character")
+
     def  __repr__(self):
         return f'User: {self.id} {self.name}'
     
@@ -40,8 +47,7 @@ class Shop(db.Model, SerializerMixin):
         if len(string) > 0:
             return string
         else: 
-            raise ValueError
-        
+            raise ValueError("The shop name must be entered and more than 1 character")
 
     def __repr__(self):
         return f'Shop: {self.id} {self.name}'
@@ -61,6 +67,13 @@ class Item(db.Model, SerializerMixin):
     shop = db.relationship('Shop', back_populates='items')
     comments = db.relationship('Comment', back_populates='item', cascade='all, delete-orphan')
 
+    @validates('name')
+    def validate_shop(self, key, string):
+        if len(string) > 0:
+            return string
+        else: 
+            raise ValueError("The item name must be entered and more than 1 character")
+
     def __repr__(self):
         return f'Item: {self.id} {self.name} {self.favorite}'
     
@@ -69,12 +82,19 @@ class Comment(db.Model, SerializerMixin):
     serialize_rules = ('-user.comments', '-item.comments', '-user.items', '-item.user', '-item.shop')
     
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(150), nullable=False)
+    content = db.Column(db.String(80), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     item_id = db.Column(db.Integer, db.ForeignKey('items.id'))
 
     user = db.relationship('User', back_populates='comments')
     item = db.relationship('Item', back_populates='comments')
+
+    @validates('content')
+    def validate_shop(self, key, string):
+        if len(string) <= 0 or len(string) > 80:
+            raise ValueError("The content must be between 1 to 80")
+        else:
+            return string
 
     def __repr__(self):
         return f'Comment: {self.content}'
