@@ -48,6 +48,7 @@ function AddItemForm({ onAddItem, resetOnAddItem }) {
         autoComplete="off"
         placeholder="Enter item name"
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         value={formik.values.name}
       />
       <p style={{color: "red"}}>{formik.errors.name}</p>

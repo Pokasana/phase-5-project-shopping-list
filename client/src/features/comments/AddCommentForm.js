@@ -12,7 +12,7 @@ function AddCommentForm({ item }) {
   const currentUser = useSelector(selectLoggedInUser)
 
   const formSchema = yup.object().shape({
-    content: yup.string(),
+    content: yup.string().required("Unable to add an empty comment").max(80, 'Must be no longer than 80 characters'),
     item_id: yup.number(),
     user_id: yup.number()
   });
