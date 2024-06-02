@@ -1,50 +1,46 @@
 import React from "react";
-import AddUserForm from "./AddUserForm"
+import AddUserForm from "./AddUserForm";
 
-import { useDispatch, useSelector } from 'react-redux'
-import { selectAllUsers, deleteUser } from './usersSlice'
+import { useDispatch, useSelector } from "react-redux";
+import { selectAllUsers, deleteUser } from "./usersSlice";
 
 function Users() {
-	const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-	const users = useSelector(selectAllUsers)
+  const users = useSelector(selectAllUsers);
 
-	const renderedUsers = users.map(user => {
-		const { id, name } = user
+  const renderedUsers = users.map((user) => {
+    const { id, name } = user;
 
-		return (
-			<li key={id}>
-				{name}
-				&nbsp;&nbsp;&nbsp;
-				<button 
-					className="emoji_button"
-					style={{fontSize: "10px"}}
-					onClick={() => {
-						dispatch(deleteUser(id));
-					}}
-				>
-				X
-				</button>
-			</li>
-		)
-	})
-	
-	return (
-		<div className='users'>
-			<h1>User Page</h1>
+    return (
+      <li key={id}>
+        {name}
+        &nbsp;&nbsp;&nbsp;
+        <button
+          className="emoji_button"
+          style={{ fontSize: "10px" }}
+          onClick={() => {
+            dispatch(deleteUser(id));
+          }}
+        >
+          X
+        </button>
+      </li>
+    );
+  });
 
-			<div className="user-select">
-				<h3>User List</h3>
-				<ul>
-					{renderedUsers}
-				</ul>
-			</div>
+  return (
+    <div className="users">
+      <h1>User Page</h1>
 
-	<AddUserForm />
-	
-		</div>
-	)
+      <div className="user-select">
+        <h3>User List</h3>
+        <ul>{renderedUsers}</ul>
+      </div>
+
+      <AddUserForm />
+    </div>
+  );
 }
 
 export default Users;
-    

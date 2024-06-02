@@ -1,16 +1,15 @@
 import React from "react";
-import { useFormik } from 'formik';
+import { useFormik } from "formik";
 import * as yup from "yup";
 
-import { useDispatch } from 'react-redux'
-import { addNewUser } from './usersSlice'
+import { useDispatch } from "react-redux";
+import { addNewUser } from "./usersSlice";
 
 function AddUserForm() {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const formSchema = yup.object().shape({
-    user: yup.string().required("Must enter an user name")
+    user: yup.string().required("Must enter an user name"),
   });
 
   const formik = useFormik({
@@ -18,11 +17,11 @@ function AddUserForm() {
       user: "",
     },
     validationSchema: formSchema,
-    onSubmit: (values, { resetForm }) =>  {
-      dispatch(addNewUser(values))
+    onSubmit: (values, { resetForm }) => {
+      dispatch(addNewUser(values));
       resetForm();
-    }
-  })
+    },
+  });
 
   return (
     <form className="add_user" onSubmit={formik.handleSubmit}>
@@ -36,9 +35,9 @@ function AddUserForm() {
       />
       <button type="submit">+</button>
 
-      <p style={{color: "red"}}>{formik.errors.user}</p>
+      <p style={{ color: "red" }}>{formik.errors.user}</p>
     </form>
-  )
-};
+  );
+}
 
 export default AddUserForm;

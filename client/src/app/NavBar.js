@@ -1,20 +1,20 @@
 import React from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
     <div id="nav_bar">
-      <NavLink id="nav_link" to='/items'>
+      <NavLink id="nav_link" to="/items">
         Items
       </NavLink>
-      <NavLink id="nav_link" to='/users'>
+      <NavLink id="nav_link" to="/users">
         Users
       </NavLink>
-      <NavLink id="nav_link" to='/shops'>
+      <NavLink id="nav_link" to="/shops">
         Shops
       </NavLink>
     </div>
   );
-};
+}
 
 export default NavBar;

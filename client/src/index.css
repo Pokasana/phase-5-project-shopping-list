@@ -1,234 +1,226 @@
 :root {
-  --bg: #282c34;
-  --header: #fff;
-  --link: #61dafb;
-  --text: hsla(0, 0%, 100%, 0.88);
+    --bg: #282c34;
+    --header: #fff;
+    --link: #61dafb;
+    --text: hsla(0, 0%, 100%, 0.88);
 }
 
 body {
-  font-family: 'Gill Sans', Tahoma, sans-serif;
+    font-family: 'Gill Sans', Tahoma, sans-serif;
 }
 
 #nav_bar {
-  background-color: #026773;
-  padding: 5px;
+    background-color: #026773;
+    padding: 5px;
 }
 
 #nav_link {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 h1 {
-  padding: 5px;
-  margin-top: 0;
-  height: 80px;
-  background-color: #F2E3D5;
-  color:  #024959;
+    padding: 5px;
+    margin-top: 0;
+    height: 80px;
+    background-color: #F2E3D5;
+    color: #024959;
 }
 
 h3 {
-  color: #024959;
-  margin: 5px;
+    color: #024959;
+    margin: 5px;
 }
 
 h4 {
-  color: #024959;
-  margin: 10px auto;
+    color: #024959;
+    margin: 10px auto;
 }
 
 ul {
-  list-style: none;
-  margin: 5px 0px 20px 0px;
+    list-style: none;
+    margin: 5px 0px 20px 0px;
 }
 
 li {
-  color: #015163;
+    color: #015163;
 }
 
 button {
-  border: 2px solid black;
-  border-radius:  3px;
-  background-color: #FFF;
-  border-color: #012E40;
-  color: #012E40;
-  padding: 5px auto;
-  font-family: 'Gill Sans', Tahoma, sans-serif;
-  font-size: 15px;
+    border: 2px solid black;
+    border-radius: 3px;
+    background-color: #FFF;
+    border-color: #012E40;
+    color: #012E40;
+    padding: 5px auto;
+    font-family: 'Gill Sans', Tahoma, sans-serif;
+    font-size: 15px;
 }
 
 button:hover {
-  background-color: #012E40;
-  color: #fff;
+    background-color: #012E40;
+    color: #fff;
 }
 
 .emoji_button {
-  border: 2px solid black;
-  border-radius:  3px;
-  background-color: white;
-  border-color: #3CA6A6;
-  color: #3CA6A6;
-  padding: 5px auto;
-  font-family: 'Gill Sans', Tahoma, sans-serif;
-  font-size: 9px;
+    border: 2px solid black;
+    border-radius: 3px;
+    background-color: white;
+    border-color: #3CA6A6;
+    color: #3CA6A6;
+    padding: 5px auto;
+    font-family: 'Gill Sans', Tahoma, sans-serif;
+    font-size: 9px;
 }
 
 .emoji_button:hover {
-  background-color: #3CA6A6;
-  color: #F2E3D5;
+    background-color: #3CA6A6;
+    color: #F2E3D5;
 }
 
 a {
-  color: #F2E3D5;
+    color: #F2E3D5;
 }
 
 .sort_container {
-  padding: 5px;
-  width: 100px;
-  background-color: #3CA6A6;
+    padding: 5px;
+    width: 100px;
+    background-color: #3CA6A6;
 }
 
 .sort_container h4 {
-  margin: 5px auto;
-  color: #003b48;
+    margin: 5px auto;
+    color: #003b48;
 }
 
 select {
-  position: relative;
-  margin: 5px;
-  background-color: #FFF;
-  color: #015163;
-  font-family: 'Gill Sans', Tahoma, sans-serif;
-  font-size: 15px;
+    position: relative;
+    margin: 5px;
+    background-color: #FFF;
+    color: #015163;
+    font-family: 'Gill Sans', Tahoma, sans-serif;
+    font-size: 15px;
 }
 
 #filter {
-  border: 0.05em solid #F2E3D5;
-  border-radius: 0.2em;
+    border: 0.05em solid #F2E3D5;
+    border-radius: 0.2em;
 }
 
 .edit_item_container {
-  width: 400px;
-  padding: 10px;
-  margin: 5px 0px 5px 5px;
-  background-color: #F2E3D5;
+    width: 400px;
+    padding: 10px;
+    margin: 5px 0px 5px 5px;
+    background-color: #F2E3D5;
 }
 
 .add_item_container {
-  width: 200px;
-  padding: 10px;
-  margin: 5px;
-  background-color: #F2E3D5;
+    width: 200px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #F2E3D5;
 }
 
 label {
-  color: #015163;
+    color: #015163;
 }
 
 input {
-  border: 0.05em solid #024959;
-  border-radius: 0.3em;
-  color: #024959;
-  font-family: 'Gill Sans', Tahoma, sans-serif;
+    border: 0.05em solid #024959;
+    border-radius: 0.3em;
+    color: #024959;
+    font-family: 'Gill Sans', Tahoma, sans-serif;
 }
 
 input::placeholder {
-  font-family: 'Gill Sans', Tahoma, sans-serif;
-  color: gray;
+    font-family: 'Gill Sans', Tahoma, sans-serif;
+    color: gray;
 }
 
 input[type="checkbox"] {
-  appearance: none;
-  background-color: #FFF;
-  margin: 0;
-  font: inherit;
-  color: #024959;
-  width: 1.15em;
-  height: 1.15em;
-  border: 0.05em solid #024959;
-  border-radius: 0.2em;
-  transform: translateY(-0.075em);
-  display: grid;
-  place-content: center;
+    appearance: none;
+    background-color: #FFF;
+    margin: 0;
+    font: inherit;
+    color: #024959;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.05em solid #024959;
+    border-radius: 0.2em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
 }
 
-.form-control + .form-control {
-  margin-top: 1em;
+.form-control+.form-control {
+    margin-top: 1em;
 }
 
 input[type="checkbox"]::before {
-  content: "★";
-  width: 1em;
-  height: 1.5em;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out;
-  box-shadow: inset 1emvar(--form-control-color);
+    content: "★";
+    width: 1em;
+    height: 1.5em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1emvar(--form-control-color);
 }
 
 input[type="checkbox"]:checked::before {
-  transform: scale(0.8);
+    transform: scale(0.8);
 }
 
 .comments_container {
-  width:600px;
-  padding:0px;
-  margin: 5px;
-  background-color: #FFFFFF;
+    width: 600px;
+    padding: 0px;
+    margin: 5px;
+    background-color: #FFFFFF;
 }
 
 .item_card {
-  width: 500px;
-  height: 80px;
-  padding: 0px;
-  margin: 5px;
-  background-color: #FFFFFF;
+    width: 500px;
+    height: 80px;
+    padding: 0px;
+    margin: 5px;
+    background-color: #FFFFFF;
 }
 
 .add_item_container select {
-  position: relative;
-  margin: 5px;
-  background-color: #FFF;
-  color: gray;
-  font-family: 'Gill Sans', Tahoma, sans-serif;
-  font-size: 15px;
-  border: 0.05em solid #F2E3D5;
-  border-radius: 0.2em;
+    position: relative;
+    margin: 5px;
+    background-color: #FFF;
+    color: gray;
+    font-family: 'Gill Sans', Tahoma, sans-serif;
+    font-size: 15px;
+    border: 0.05em solid #F2E3D5;
+    border-radius: 0.2em;
 }
 
 .edit_item_container select {
-  position: relative;
-  margin: 5px;
-  background-color: #FFF;
-  color: #024959;
-  font-family: 'Gill Sans', Tahoma, sans-serif;
-  font-size: 15px;
-  border: 0.05em solid #F2E3D5;
-  border-radius: 0.2em;
+    position: relative;
+    margin: 5px;
+    background-color: #FFF;
+    color: #024959;
+    font-family: 'Gill Sans', Tahoma, sans-serif;
+    font-size: 15px;
+    border: 0.05em solid #F2E3D5;
+    border-radius: 0.2em;
 }
 
 #auth_box {
-  padding: 5px;
-  text-align: right;
-  float: right;
-  display: inline;
-  width: 200px;
+    padding: 5px;
+    text-align: right;
+    float: right;
+    display: inline;
+    width: 200px;
 }
 
 #comment_flag {
-  color: #024959;
-  font-size: 0.9em;
+    color: #024959;
+    font-size: 0.9em;
 }
 
 .add_comment {
-  width: 400px;
-  padding: 10px;
-  margin: 20px 5px 0px 5px;
-  background-color: #F2E3D5;
+    width: 400px;
+    padding: 10px;
+    margin: 20px 5px 0px 5px;
+    background-color: #F2E3D5;
 }
-
-/* .comments_content {
-  display: block;
-}
-
-.comments_content li button {
-  display: inline;
-} */
